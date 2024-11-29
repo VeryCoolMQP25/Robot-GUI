@@ -1,0 +1,99 @@
+
+body {
+  font-family: 'Roboto', Arial, sans-serif;
+  background-color: #f0f4f8;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+}
+
+.app {
+  text-align: center;
+}
+
+h1 {
+  font-size: 2em;
+  color: #333;
+  margin-bottom: 20px;
+}
+
+p {
+  font-size: 1.2em;
+  color: #000000;
+  margin-bottom: 30px;
+}
+
+.floor-map {
+  display: grid;
+  grid-template-rows: repeat(2, 150px); 
+  grid-template-columns: repeat(2, 150px); 
+  gap: 10px;
+  background-color: #ccc;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+  justify-content: center;
+  align-items: center;
+  margin: 0 auto;
+}
+
+.room {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #007bff;
+  color: white;
+  font-weight: bold;
+  border-radius: 8px;
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2);
+  cursor: pointer;
+  transition: transform 0.2s ease, background-color 0.3s ease;
+}
+
+.room:hover {
+  background-color: #0056b3;
+  transform: scale(1.05);
+}
+
+#UH400 {
+  grid-row: 1 / 2;
+  grid-column: 1 / 2;
+}
+
+#UH405 {
+  grid-row: 1 / 2;
+  grid-column: 2 / 3;
+}
+
+#UH500 {
+  grid-row: 2 / 3;
+  grid-column: 1 / 2;
+}
+
+#UH520 {
+  grid-row: 2 / 3;
+  grid-column: 2 / 3;
+}
+
+.exit-button {
+  background-color: #dc3545;
+  color: white;
+  border: none;
+  border-radius: 10px;
+  font-size: 1em;
+  font-weight: bold;
+  padding: 15px 25px;
+  cursor: pointer;
+  transition: transform 0.2s, background-color 0.3s ease;
+}
+
+.exit-button:hover {
+  background-color: #b52a35;
+  transform: scale(1.05);
+}
+
+
+
