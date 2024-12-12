@@ -10,10 +10,10 @@ function Home() {
 
   // Coordinates for each room
   const roomCoordinates = {
-    UH100: { x: 9.23, y: 0.18, z: 0.0, orientationZ: 0.00487, orientationW: 0.99999 },
-    UH105: { x: 19.9, y: -1.25, z: 0.0, orientationZ: 0.1, orientationW: 0.99 },
-    UH110: { x: 15.0, y: 1.5, z: 0.0, orientationZ: -0.1, orientationW: 0.99 },
-    UH120: { x: 18.0, y: 5.0, z: 0.0, orientationZ: 0.2, orientationW: 0.98 },
+    UH400: { x: 9.23, y: 0.18, z: 0.0, orientationZ: 0.00487, orientationW: 0.99999 },
+    UH405: { x: 19.9, y: -1.25, z: 0.0, orientationZ: 0.1, orientationW: 0.99 },
+    UH410: { x: 15.0, y: 1.5, z: 0.0, orientationZ: -0.1, orientationW: 0.99 },
+    UH420: { x: 18.0, y: 5.0, z: 0.0, orientationZ: 0.2, orientationW: 0.98 },
   };
 
   const handleNavigation = (room) => {
