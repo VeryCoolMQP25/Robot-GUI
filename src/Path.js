@@ -64,7 +64,7 @@ function Path() {
     backgroundSize: "cover",
     backgroundPosition: "center",
     height: "100vh",
-    width: "80vw"
+    width: "100vw"
   };
   
   
