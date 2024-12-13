@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import ROSLIB from "roslib";
-import "./App.css";
+import "./Path.css";
+import faceImage from "./images/face.jpg";
 
 function Path() {
   const { room } = useParams(); // Get room number from URL
@@ -58,9 +59,18 @@ function Path() {
     navigate("/"); // Navigate back to home page
   };
 
+  const pathStyle = {
+    backgroundImage: `url(${faceImage})`,
+    backgroundSize: "cover",
+    backgroundPosition: "center",
+    height: "100vh",
+    width: "80vw"
+  };
+  
+  
   return (
-    <div className="app">
-      <h1>Calculating path to {room}...</h1>
+    <div className="path-page" style ={pathStyle}>
+      <h1>Follow Yours Truly</h1>
       <button onClick={handleExit} className="exit-button">
         Exit
       </button>
