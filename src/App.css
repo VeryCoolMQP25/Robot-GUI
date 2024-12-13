@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&family=Pacifico&family=Playfair+Display:wght@700&family=Lobster&display=swap');
+
 
 body {
   font-family: 'Roboto', Arial, sans-serif;
@@ -7,93 +9,155 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-  min-height: 100vh;
+  min-height: 100vh; 
 }
+
 
 .app {
   text-align: center;
+  width: 90%;
+  max-width: 1600px;
+  margin: auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  padding: 20px;
 }
+
 
 h1 {
-  font-size: 2em;
+  font-family: 'Lobster';
+  font-size: 3.5em;
   color: #333;
-  margin-bottom: 20px;
+  margin: 0;
 }
 
+
 p {
-  font-size: 1.2em;
-  color: #000000;
+  font-size: 1.7em;
+  color: #000;
   margin-bottom: 30px;
 }
 
-.floor-map {
-  display: grid;
-  grid-template-rows: repeat(2, 150px); 
-  grid-template-columns: repeat(2, 150px); 
-  gap: 10px;
-  background-color: #ccc;
-  padding: 20px;
-  border-radius: 10px;
-  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-  justify-content: center;
-  align-items: center;
-  margin: 0 auto;
+
+.floor-map-wrapper {
+  width: 100%;
+  overflow-x: auto; /* Enable horizontal scrolling */
+  padding-bottom: 20px; /* Add space at the bottom for scrolling */
 }
+
+
+.floor-map {
+  display: flex; 
+  flex-wrap: nowrap; /* Prevent wrapping to the next line */
+  gap: 30px; /* Space between next section */
+}
+
+
+.floor-map-row {
+  font-size: 2em;
+  font-family: 'Roboto', sans-serif;
+  font-weight: bold;
+  color: #555;
+  text-align: center;
+  margin-bottom: 10px;
+  width: 300px; 
+}
+
+
+/* Section Title Styling */
+.classrooms-row .section-title,
+.study-areas-row .section-title,
+.another-floor-row .section-title,
+.restrooms-row .section-title {
+  font-family: 'Playfair Display', serif; 
+  font-size: 2.5em;
+  color: #876e21;
+  text-transform: uppercase; 
+  letter-spacing: 2px; 
+  margin-bottom: 20px;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1); 
+}
+
+
+.restrooms-row .section-title {
+  font-family: 'Playfair Display', serif; 
+  font-size: 2.8em;
+  color: #3f0c0a;
+  text-transform: uppercase;
+  letter-spacing: 3px;
+  text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.1); 
+}
+
+
+.classrooms-row .section-title {
+  font-family: 'Playfair Display', serif;
+  color: #3f0c0a; 
+}
+
+
+.study-areas-row .section-title {
+  font-family: 'Playfair Display', serif;
+  color: #3f0c0a; 
+}
+
+
+.another-floor-row .section-title {
+  font-family: 'Playfair Display', serif;
+  color: #3f0c0a; 
+}
+
 
 .room {
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: #007bff;
+  background-color: #007bff; 
   color: white;
   font-weight: bold;
-  border-radius: 8px;
-  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2);
+  border-radius: 15px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
   cursor: pointer;
   transition: transform 0.2s ease, background-color 0.3s ease;
+  height: 200px; 
+  font-size: 2.2em; 
+  padding: 20px; 
+  width: 100%;
 }
 
+
 .room:hover {
-  background-color: #0056b3;
+  background-color: #5aa5f5;
   transform: scale(1.05);
 }
 
-#UH400 {
-  grid-row: 1 / 2;
-  grid-column: 1 / 2;
+
+.restrooms-row {
+  display: flex;
+  flex-direction: column;
+  width: 100%; 
+  padding: 15px; 
 }
 
-#UH405 {
-  grid-row: 1 / 2;
-  grid-column: 2 / 3;
-}
-
-#UH410 {
-  grid-row: 2 / 3;
-  grid-column: 1 / 2;
-}
-
-#UH420 {
-  grid-row: 2 / 3;
-  grid-column: 2 / 3;
-}
 
 .exit-button {
   background-color: #dc3545;
   color: white;
   border: none;
-  border-radius: 10px;
-  font-size: 1em;
+  border-radius: 15px;
+  font-size: 1.2em;
   font-weight: bold;
-  padding: 15px 25px;
+  padding: 15px 30px;
   cursor: pointer;
   transition: transform 0.2s, background-color 0.3s ease;
+  margin-top: 20px;
 }
+
 
 .exit-button:hover {
   background-color: #b52a35;
   transform: scale(1.05);
 }
-
-
 
