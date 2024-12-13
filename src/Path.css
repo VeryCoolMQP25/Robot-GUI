@@ -1,0 +1,38 @@
+.path-page {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: center;
+  height: 100vh;
+  background-size: cover;
+  background-position: center;
+  text-align: center;
+  color: white;
+}
+
+.path-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+h1 {
+  font-family: 'Pacifico';
+  font-size: 2.5em;
+  margin-bottom: 0px; 
+}
+
+.exit-button {
+  font-size: 1.2em;
+  background-color: #dc3545;
+  color: white;
+  border: none;
+  cursor: pointer;
+  transition: transform 0.2s ease, background-color 0.3s ease;
+  margin-bottom: 20px; 
+}
+
+.exit-button:hover {
+  background-color: #b52a35;
+  transform: scale(1.05);
+}
