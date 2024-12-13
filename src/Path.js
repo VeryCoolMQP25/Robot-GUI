@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import ROSLIB from "roslib";
 import "./Path.css";
-import faceImage from "./images/face.jpg";
+import faceImage from "/face.jpg";
 
 function Path() {
   const { room } = useParams(); // Get room number from URL
