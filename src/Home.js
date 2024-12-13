@@ -1,26 +1,27 @@
-import React, { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
 import ROSLIB from "roslib";
 import "./App.css";
+import { useNavigate } from "react-router-dom";
+import React, { useState, useEffect } from "react";
 
 function Home() {
   const navigate = useNavigate();
   const [ros, setRos] = useState(null);
   const [isConnected, setIsConnected] = useState(false);
 
-  // Coordinates for each room
   const roomCoordinates = {
-    UH400: { x: 9.23, y: 0.18, z: 0.0, orientationZ: 0.00487, orientationW: 0.99999 },
-    UH405: { x: 19.9, y: -1.25, z: 0.0, orientationZ: 0.1, orientationW: 0.99 },
-    UH410: { x: 15.0, y: 1.5, z: 0.0, orientationZ: -0.1, orientationW: 0.99 },
-    UH420: { x: 18.0, y: 5.0, z: 0.0, orientationZ: 0.2, orientationW: 0.98 },
+    UH400: { x: 36.8, y: 2.27, z: 0.0, orientationZ: 0.00487, orientationW: 0.99999 },
+    UH405: { x: 26.1, y: 1.73, z: 0.0, orientationZ: 0.1, orientationW: 0.99 },
+    UH420: { x: 11.8, y: 1.49, z: 0.0, orientationZ: -0.1, orientationW: 0.99 },
+    Elevator: { x: 18.9, y: 0.243, z: 0.0, orientationZ: 0.2, orientationW: 0.98 },
+    Restrooms: { x: 17.1, y: 9.18, z: 0.0, orientationZ: 0.00487, orientationW: 0.99999 },
+    Study_Area: { x: 48.7, y: -0.122, z: 0.0, orientationZ: 0.1, orientationW: 0.99 },
+    Tech_Suites: { x: 26.9, y: -2.47, z: 0.0, orientationZ: -0.1, orientationW: 0.99 },
+    Stairs: { x: 49.7, y: 3.58, z: 0.0, orientationZ: 0.2, orientationW: 0.98 },
   };
 
   const handleNavigation = (room) => {
-    // Navigate to corresponding Path page
     navigate(`/Path/${room}`);
 
-    // Publish coordinates to the /goal_pose topic 
     if (ros && isConnected) {
       const goalPublisher = new ROSLIB.Topic({
         ros: ros,
@@ -30,7 +31,6 @@ function Home() {
 
       const currentTime = new Date();
 
-      // Create goal message using coordinates for the selected room
       const coordinates = roomCoordinates[room];
       const goalMessage = new ROSLIB.Message({
         header: {
@@ -57,7 +57,7 @@ function Home() {
 
       try {
         goalPublisher.publish(goalMessage);
-        console.log(`Published goal for room: ${room} to /goal_pose topic`);
+        console.log(`Published goal for room: ${room}`);
       } catch (error) {
         console.error("Failed to publish message:", error);
       }
@@ -67,12 +67,10 @@ function Home() {
   };
 
   useEffect(() => {
-    // Set up connection to ROS WebSocket
     const rosConnection = new ROSLIB.Ros({
-      url: "ws://localhost:9090", // WebSocket URL of ROS bridge
+      url: "ws://localhost:9090",
     });
 
-    // Check if ROS connection is successful
     rosConnection.on("connection", () => {
       console.log("Connected to ROS WebSocket server");
       setIsConnected(true);
@@ -99,21 +97,58 @@ function Home() {
 
   return (
     <div className="app">
-      <h1>Welcome to Unity Hall</h1>
-      <p>Where would you like to go?</p>
+      <h1>Welcome to Unity Hall!</h1>
+      <p>Take me to....</p>
 
-      <div className="floor-map">
-        <div onClick={() => handleNavigation("UH400")} className="room" id="UH400">
-          <p>UH400</p>
+      {/* Classrooms */}
+      <div className="section classrooms-row">
+        <p className="section-title">Classrooms</p>
+        <div className="floor-map">
+          <div onClick={() => handleNavigation("UH400")} className="room">
+            UH400
+          </div>
+          <div onClick={() => handleNavigation("UH405")} className="room">
+            UH405
+          </div>
+          <div onClick={() => handleNavigation("UH420")} className="room">
+            UH420
+          </div>
         </div>
-        <div onClick={() => handleNavigation("UH405")} className="room" id="UH405">
-          <p>UH405</p>
+      </div>
+
+      {/* Study time */}
+      <div className="section study-areas-row">
+        <p className="section-title">Study Areas</p>
+        <div className="floor-map">
+          <div onClick={() => handleNavigation("Tech_Suites")} className="room">
+            Tech Suites
+          </div>
+          <div onClick={() => handleNavigation("Study_Area")} className="room">
+            Study Lounge
+          </div>
         </div>
-        <div onClick={() => handleNavigation("UH410")} className="room" id="UH410">
-          <p>UH410</p>
+      </div>
+
+      {/* If user wants to dip from current floor */}
+      <div className="section another-floor-row">
+        <p className="section-title">Another Floor</p>
+        <div className="floor-map">
+          <div onClick={() => handleNavigation("Stairs")} className="room">
+            Stairs
+          </div>
+          <div onClick={() => handleNavigation("Elevator")} className="room">
+            Elevator
+          </div>
         </div>
-        <div onClick={() => handleNavigation("UH420")} className="room" id="UH420">
-          <p>UH420</p>
+      </div>
+
+      {/* Restrooms */}
+      <div className="section restrooms-row">
+        <p className="section-title">Restrooms</p>
+        <div className="floor-map">
+          <div onClick={() => handleNavigation("Restrooms")} className="room restrooms-room">
+            Restrooms
+          </div>
         </div>
       </div>
     </div>
