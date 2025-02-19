@@ -1,46 +1,94 @@
 .start-page {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-    width: 1700px;
-    background-image: url("/srv/face.jpg"); /* Add image for robot face here */
-    background-size: cover;
-    background-position: center;
-    color: white;
-    text-align: center;
-  }
-  
-  /* .content {
-    background-color: rgba(0, 0, 0, 0.5); 
-    /* padding: 20px;
-    border-radius: 15px;
-  } */
-   */
-  h1 {
-    font-family: 'Pacifico', cursive;
-    font-size: 3.5em;
-    margin-bottom: 20px;
-  }
-  
-  .start-button {
-    position: absolute;
-    bottom: 40px;  
-    left: 50%;  /* Horizontally centered */
-    transform: translateX(-50%); 
-    padding: 15px 30px;
-    font-size: 1.5em;
-    background-color: #007bff;
-    color: white;
-    border: none;
-    border-radius: 10px;
-    cursor: pointer;
-    transition: transform 0.2s ease, background-color 0.3s ease;
-  }
-  
-  
-  .start-button:hover {
-    background-color: #0056b3;
-    transform: scale(1.05);
-  }
-  
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  width: 100%;
+  background-image: url("/srv/face.jpg"); /* Add image for robot face here */
+  background-size: cover;
+  background-position: center;
+  color: white;
+  text-align: center;
+}
+
+/* Heading Style */
+h1 {
+  font-family: 'Pacifico', cursive;
+  font-size: 3.5em;
+  margin-bottom: 20px;
+}
+
+/* Container for Buttons */
+.button-container {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;  /* Space between buttons */
+  align-items: center;
+}
+
+/* Common Button Style */
+.choice-button {
+  padding: 15px 40px;
+  font-size: 1.5em;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: transform 0.2s ease, background-color 0.3s ease;
+  width: 250px; /* Set fixed width for uniformity */
+  text-align: center;
+}
+
+/* Hover Effect */
+.choice-button:hover {
+  background-color: #0056b3;
+  transform: scale(1.05);
+}
+
+/* Button Captions */
+.caption {
+  font-size: 1em;
+  font-style: italic;
+  color: #4b0b0b;
+}
+
+.home-choice-button {
+  padding: 10px 20px;
+  font-size: 1.2em;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  position: absolute;
+  bottom: 70%; 
+  left: 70%;
+  transform: translateX(-50%);
+}
+
+.home-choice-button:hover {
+  background-color: #0056b3;
+}
+.floor-choice-button {
+  padding: 10px 20px;
+  font-size: 1.2em;
+  background-color: #28a745;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  margin: 5px;
+  transition: background-color 0.3s ease;
+}
+
+.floor-choice-button:hover {
+  background-color: #218838;
+}
+
+.left-heading {
+  text-align: left;
+  margin-left: 20px; /* Adjust spacing as needed */
+}
