@@ -36,3 +36,9 @@ h1 {
   background-color: #b52a35;
   transform: scale(1.05);
 }
+
+.left-heading {
+  position: absolute;
+  left: 20px; 
+  bottom: 20px; 
+}

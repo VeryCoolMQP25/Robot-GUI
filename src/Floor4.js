@@ -7,18 +7,31 @@ function Floor4() {
   const navigate = useNavigate();
   const [ros, setRos] = useState(null);
   const [isConnected, setIsConnected] = useState(false);
+  const [roomCoordinates, setRoomCoordinates] = useState({});
+  const [floor4Rooms, setFloor4Rooms] = useState([]);
 
-  const roomCoordinates = {
-    UH400: { x: 36.8, y: 2.27, z: 0.0, orientationZ: 0.00487, orientationW: 0.99999 },
-    UH405: { x: 26.1, y: 1.73, z: 0.0, orientationZ: 0.1, orientationW: 0.99 },
-    UH420: { x: 11.8, y: 1.49, z: 0.0, orientationZ: -0.1, orientationW: 0.99 },
-    Elevator: { x: 18.9, y: 0.243, z: 0.0, orientationZ: 0.2, orientationW: 0.98 },
-    Restrooms: { x: 17.1, y: 9.18, z: 0.0, orientationZ: 0.00487, orientationW: 0.99999 },
-    Study_Area: { x: 48.7, y: -0.122, z: 0.0, orientationZ: 0.1, orientationW: 0.99 },
-    Tech_Suites: { x: 26.9, y: -2.47, z: 0.0, orientationZ: -0.1, orientationW: 0.99 },
-    Stairs: { x: 49.7, y: 3.58, z: 0.0, orientationZ: 0.2, orientationW: 0.98 },
-  };
-
+  useEffect(() => {
+    console.log("Fetching room coordinates...");
+    fetch("/Unity_coords.json")
+      .then((response) => response.json())
+      .then((data) => {
+        console.log("Room coordinates loaded:", data);
+        setRoomCoordinates(data);
+  
+        if (data.floor_4) {
+          const allRooms = Object.keys(data.floor_4); // Get all room names
+  
+          setFloor4Rooms(allRooms); // Store all rooms
+        } else {
+          console.error("Floor 4 data missing in JSON");
+        }
+      })
+      .catch((error) => {
+        console.error("Error loading coordinates:", error);
+        setRoomCoordinates({});
+      });
+  }, []);
+      
   const handleNavigation = (room) => {
     navigate(`/Path/${room}`);
   };
@@ -55,35 +68,70 @@ function Floor4() {
   return (
     <div className="app">
       <h1>Floor 4</h1>
-      <button className="home-button" onClick={() => navigate("/")}>Home</button>
-      <div className="section classrooms-row">
-        <p className="section-title">Classrooms</p>
-        <div className="floor-map">
-          <div onClick={() => handleNavigation("UH400")} className="room">UH400</div>
-          <div onClick={() => handleNavigation("UH405")} className="room">UH405</div>
-          <div onClick={() => handleNavigation("UH420")} className="room">UH420</div>
-        </div>
-      </div>
-      <div className="section study-areas-row">
-        <p className="section-title">Study Areas</p>
-        <div className="floor-map">
-          <div onClick={() => handleNavigation("Tech_Suites")} className="room">Tech Suites</div>
-          <div onClick={() => handleNavigation("Study_Area")} className="room">Study Lounge</div>
-        </div>
-      </div>
-      <div className="section another-floor-row">
-        <p className="section-title">Another Floor</p>
-        <div className="floor-map">
-          <div onClick={() => handleNavigation("Stairs")} className="room">Stairs</div>
-          <div onClick={() => handleNavigation("Elevator")} className="room">Elevator</div>
-        </div>
-      </div>
-      <div className="section restrooms-row">
-        <p className="section-title">Restrooms</p>
-        <div className="floor-map">
-          <div onClick={() => handleNavigation("Restrooms")} className="room restrooms-room">Restrooms</div>
-        </div>
-      </div>
+      <button className="home-button" onClick={() => navigate("/")}>
+        Home
+      </button>
+
+      {Object.keys(roomCoordinates).length > 0 ? (
+        <>
+          <div className="section classrooms-row">
+            <p className="section-title">Classrooms</p>
+            <div className="floor-map">
+              {floor4Rooms
+                .filter((room) => room.startsWith("UH")) // Selects only rooms that start with "UH"
+                .map((room) => (
+                  <div key={room} onClick={() => handleNavigation(room)} className="room">
+                    {room}
+                  </div>
+                ))}
+            </div>
+          </div>
+
+          <div className="section study-areas-row">
+            <p className="section-title">Study Areas</p>
+            <div className="floor-map">
+              {["Tech_Suites", "Study_Area"].map((room) => (
+                <div
+                  key={room}
+                  onClick={() => handleNavigation(room)}
+                  className="room"
+                >
+                  {room.replace("_", " ")}
+                </div>
+              ))}
+            </div>
+          </div>
+
+          <div className="section another-floor-row">
+            <p className="section-title">Another Floor</p>
+            <div className="floor-map">
+              {["Stairs", "Elevator"].map((room) => (
+                <div
+                  key={room}
+                  onClick={() => handleNavigation(room)}
+                  className="room"
+                >
+                  {room}
+                </div>
+              ))}
+            </div>
+          </div>
+
+          <div className="section restrooms-row">
+            <p className="section-title">Restrooms</p>
+            <div className="floor-map">
+              <div
+                onClick={() => handleNavigation("Restrooms")}
+                className="room restrooms-room"
+              >
+                Restrooms
+              </div>
+            </div>
+          </div>
+        </>
+      ) : (
+        <p>Loading room coordinates...</p>
+      )}
     </div>
   );
 }
