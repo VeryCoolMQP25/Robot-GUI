@@ -1,6 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&family=Pacifico&family=Playfair+Display:wght@700&family=Lobster&display=swap');
 
-
 body {
   font-family: 'Roboto', Arial, sans-serif;
   background-color: #f0f4f8;
@@ -28,10 +27,10 @@ body {
 
 
 h1 {
-  font-family: 'Lobster';
-  font-size: 3.5em;
-  color: #333;
+  font-family: 'Serif'; 
+  color: #571111;
   margin: 0;
+  font-size: 2.5em;
 }
 
 
@@ -68,13 +67,12 @@ p {
 
 
 /* Section Title Styling */
-.classrooms-row .section-title,
-.study-areas-row .section-title,
-.another-floor-row .section-title,
-.restrooms-row .section-title {
+.classrooms-box .section-title,
+.study-areas-box .section-title,
+.another-floor-box .section-title,
+.restrooms-box .section-title {
   font-family: 'Playfair Display', serif; 
   font-size: 2.5em;
-  color: #876e21;
   text-transform: uppercase; 
   letter-spacing: 2px; 
   margin-bottom: 20px;
@@ -82,7 +80,7 @@ p {
 }
 
 
-.restrooms-row .section-title {
+.restrooms-box .section-title {
   font-family: 'Playfair Display', serif; 
   font-size: 2.8em;
   color: #3f0c0a;
@@ -92,21 +90,21 @@ p {
 }
 
 
-.classrooms-row .section-title {
+.classrooms-box .section-title {
   font-family: 'Playfair Display', serif;
   color: #3f0c0a; 
 }
 
 
-.study-areas-row .section-title {
+.study-areas-box .section-title {
   font-family: 'Playfair Display', serif;
   color: #3f0c0a; 
 }
 
 
-.another-floor-row .section-title {
+.another-floor-box .section-title {
   font-family: 'Playfair Display', serif;
-  color: #3f0c0a; 
+  font-weight: bold;
 }
 
 
@@ -134,7 +132,7 @@ p {
 }
 
 
-.restrooms-row {
+.restrooms-box {
   display: flex;
   flex-direction: column;
   width: 100%; 
@@ -158,5 +156,81 @@ p {
 .exit-button:hover {
   background-color: #b52a35;
   transform: scale(1.05);
+}
+
+.career-development-box .section-title {
+  font-family: 'Playfair Display', serif; 
+  font-size: 2.5em;
+  color: #0a0a0a;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  margin-bottom: 20px;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.home-button {
+  background-color: #28a745; /* Green color for the home button */
+  color: white;
+  font-size: 1.5em;
+  font-weight: bold;
+  padding: 15px 30px;
+  border: none;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: transform 0.2s ease, background-color 0.3s ease;
+  margin-top: 30px; /* Add margin to give it space from other elements */
+}
+
+.home-button:hover {
+  background-color: #218838; /* Darker green when hovered */
+  transform: scale(1.05); /* Slight zoom effect */
+}
+
+/* Add some spacing for responsiveness */
+@media (max-width: 768px) {
+  .home-button {
+    font-size: 1.2em;
+    padding: 12px 25px;
+  }
+
+  .room {
+    font-size: 1.5em;
+    padding: 15px;
+  }
+
+  .section-title {
+    font-size: 2em;
+  }
+}
+
+/* Section box styles */
+.section-box {
+  background-color: #f9f9f9; 
+  border-radius: 15px;
+  padding: 20px;
+  margin-bottom: 30px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.classrooms-box,
+.study-areas-box,
+.another-floor-box,
+.restrooms-box {
+  border: 2px solid #007bff;
+}
+
+.classrooms-box .room,
+.study-areas-box .room,
+.another-floor-box .room,
+.restrooms-box .room {
+  background-color: #007bff;
+  color: white;
+}
+
+.classrooms-box .room:hover,
+.study-areas-box .room:hover,
+.another-floor-box .room:hover,
+.restrooms-box .room:hover {
+  background-color: #5aa5f5;
 }
 
