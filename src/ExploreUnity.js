@@ -1,12 +1,12 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
-import "./Start.css"; 
+import "./ExploreUnity.css"; 
 
 function ExploreUnity() {
   const navigate = useNavigate();
 
   return (
-    <div className="app">
+    <div className="explore-unity-page">
       {/* Home Button */}
       <button 
         className="home-choice-button" 

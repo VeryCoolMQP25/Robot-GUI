@@ -1,3 +1,16 @@
+/* Global styles for the body */
+body {
+  font-family: 'Roboto', Arial, sans-serif;
+  background-color: #f0f4f8;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+}
+
+/* Start Page-specific styles */
 .start-page {
   display: flex;
   flex-direction: column;
@@ -5,22 +18,42 @@
   align-items: center;
   height: 100vh;
   width: 100%;
-  background-image: url("/srv/face.jpg"); /* Add image for robot face here */
   background-size: cover;
   background-position: center;
   color: white;
   text-align: center;
+  position: relative; /* Allow absolute positioning of elements within */
+}
+
+/* Home button positioned at the top-left */
+.start-page .home-choice-button {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  padding: 10px 20px;
+  font-size: 1.2em;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.start-page .home-choice-button:hover {
+  background-color: #0056b3;
 }
 
 /* Heading Style */
-h1 {
-  font-family: 'Pacifico', cursive;
+.start-page h1 {
+  font-family: 'Serif';
   font-size: 3.5em;
   margin-bottom: 20px;
+  color:#1f3825
 }
 
 /* Container for Buttons */
-.button-container {
+.start-page .button-container {
   display: flex;
   flex-direction: column;
   gap: 20px;  /* Space between buttons */
@@ -28,7 +61,7 @@ h1 {
 }
 
 /* Common Button Style */
-.choice-button {
+.start-page .choice-button {
   padding: 15px 40px;
   font-size: 1.5em;
   background-color: #007bff;
@@ -42,37 +75,20 @@ h1 {
 }
 
 /* Hover Effect */
-.choice-button:hover {
+.start-page .choice-button:hover {
   background-color: #0056b3;
   transform: scale(1.05);
 }
 
 /* Button Captions */
-.caption {
+.start-page .caption {
   font-size: 1em;
   font-style: italic;
-  color: #4b0b0b;
+  color: #080808;
 }
 
-.home-choice-button {
-  padding: 10px 20px;
-  font-size: 1.2em;
-  background-color: #007bff;
-  color: white;
-  border: none;
-  border-radius: 8px;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
-  position: absolute;
-  bottom: 70%; 
-  left: 70%;
-  transform: translateX(-50%);
-}
-
-.home-choice-button:hover {
-  background-color: #0056b3;
-}
-.floor-choice-button {
+/* Floor choice button */
+.start-page .floor-choice-button {
   padding: 10px 20px;
   font-size: 1.2em;
   background-color: #28a745;
@@ -84,11 +100,6 @@ h1 {
   transition: background-color 0.3s ease;
 }
 
-.floor-choice-button:hover {
-  background-color: #218838;
-}
-
-.left-heading {
-  text-align: left;
-  margin-left: 20px; /* Adjust spacing as needed */
+.start-page .floor-choice-button:hover {
+  background-color: #1f3825;
 }
