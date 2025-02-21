@@ -44,6 +44,7 @@ p {
 .floor-map-wrapper {
   width: 100%;
   overflow-x: auto; /* Enable horizontal scrolling */
+  overflow-y:auto;
   padding-bottom: 20px; /* Add space at the bottom for scrolling */
 }
 

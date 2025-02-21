@@ -9,7 +9,7 @@ function Start() {
     <div className="start-page">
       <h1>Welcome to Unity Hall!</h1>
       <p>Choose your journey:</p>
-      
+
       <div className="button-container">
         <div className="option">
           <button className="choice-button" onClick={() => navigate("/destination-input")}>
@@ -24,6 +24,11 @@ function Start() {
           </button>
           <p className="caption">(If you're feeling adventurous)</p>
         </div>
+      </div>
+
+      {/* Footer container for logo */}
+      <div className="footer">
+        <img src="/WPI_logo.png" alt="WPI Logo" className="wpi-logo" />
       </div>
     </div>
   );
