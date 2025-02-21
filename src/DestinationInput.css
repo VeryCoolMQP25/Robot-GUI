@@ -3,10 +3,10 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  height: 100vh; /* Full viewport height */
-  width: 100vw; /* Full viewport width */
-  background-color: white; /* Ensure a clean background */
-  padding: 20px; /* Prevent edge overflow on small screens */
+  height: 100vh;
+  width: 100vw;
+  background-color: white;
+  padding: 20px;
   box-sizing: border-box;
 }
 
@@ -17,8 +17,8 @@
   border-radius: 10px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
   text-align: center;
-  width: 90%; /* Adjust for small screens */
-  max-width: 350px; /* Prevents the box from getting too large */
+  width: 90%;
+  max-width: 350px;
 }
 
 /* Title styling */
@@ -39,24 +39,42 @@
   box-sizing: border-box;
 }
 
-/* Button styling */
+/* Button shared styling */
+.submit-button,
+.home-button {
+  width: 100%;
+  max-width: 200px;
+  padding: clamp(10px, 2vw, 15px) clamp(20px, 3vw, 30px);
+  font-size: clamp(1em, 2vw, 1.3em);
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+  text-align: center;
+  border: none;
+  display: block;
+  margin: 10px auto 0;
+  font-family: 'Roboto', Arial, sans-serif;
+}
+
+/* Submit button specific styles */
 .submit-button {
   background-color: #ac2b37;
   color: white;
-  border: none;
-  padding: 12px 20px;
-  border-radius: 5px;
-  font-size: 1em;
-  cursor: pointer;
-  transition: background-color 0.3s ease, transform 0.2s ease;
-  width: 100%; /* Ensure it fits within the dialog box */
-  max-width: 200px; /* Prevents it from getting too wide */
-  margin: auto;
 }
 
-/* Button hover effect */
 .submit-button:hover {
   background-color: #8c222c;
+  transform: scale(1.05);
+}
+
+/* Home button styles */
+.home-button {
+  background-color: #ccc;
+  color: black;
+}
+
+.home-button:hover {
+  background-color: #bbb;
   transform: scale(1.05);
 }
 
@@ -78,7 +96,8 @@
     padding: 10px;
   }
 
-  .submit-button {
+  .submit-button, 
+  .home-button {
     font-size: 0.9em;
     padding: 10px;
   }
