@@ -14,7 +14,7 @@
   .floor-title {
     font-family: 'Serif';  /* Ensure the correct font */
     font-size: 3em; 
-    color: #22168b;
+    color: #ac2b37;
     margin: 0;
     letter-spacing: 2px; /* Add a little spacing for distinction */
     text-shadow: 2px 2px 4px rgba(131, 188, 235, 0.678); /* Subtle shadow for better readability */
@@ -23,7 +23,7 @@
   .explore-unity-page h1 {
     font-family: 'Serif', cursive;
     font-size: 3.5em;
-    color: #444;
+    color: #ac2b37;
     margin-bottom: 15px;
     letter-spacing: 1px;
   }
@@ -44,7 +44,7 @@
   .explore-unity-page .floor-choice-button {
     padding: 15px 30px;
     font-size: 1.3em;
-    background-color: #007bff;
+    background-color: #ac2b37;
     color: white;
     border: none;
     border-radius: 8px;
@@ -54,7 +54,7 @@
   }
   
   .explore-unity-page .floor-choice-button:hover {
-    background-color: #0056b3;
+    background-color: #ac2b37;
     transform: scale(1.05);
   }
   
