@@ -1,95 +1,126 @@
-/* Ensure the styles are only applied to the ExploreUnity page */
+/* Ensure styles apply only to the ExploreUnity page */
 .explore-unity-page {
-    font-family: 'Roboto', Arial, sans-serif;
-    background-color: #f7f9fc;
-    margin: 0;
-    padding: 0;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    min-height: 100vh;
-    flex-direction: column;
+  font-family: 'Roboto', Arial, sans-serif;
+  background-color: #f7f9fc;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  flex-direction: column;
+  width: 100vw;
+}
+
+/* Floor title */
+.floor-title {
+  font-family: 'Serif', serif;
+  font-size: clamp(2em, 4vw, 3.5em); /* Dynamically adjusts based on screen size */
+  color: #ac2b37;
+  margin: 0;
+  letter-spacing: 2px;
+  text-shadow: 2px 2px 4px rgba(131, 188, 235, 0.678);
+  text-align: center;
+}
+
+/* Main heading */
+.explore-unity-page h1 {
+  font-family: 'Serif', cursive;
+  font-size: clamp(2.5em, 5vw, 4em); /* Scales dynamically */
+  color: #ac2b37;
+  margin-bottom: 15px;
+  letter-spacing: 1px;
+  text-align: center;
+}
+
+/* Paragraph styling */
+.explore-unity-page p {
+  font-size: clamp(1em, 2vw, 1.5em); /* Adjusts size dynamically */
+  color: #070606;
+  margin-bottom: 30px;
+  text-align: center;
+  max-width: 90%;
+}
+
+/* Floor selection container */
+.explore-unity-page .floor-selection {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  align-items: center;
+  width: 100%;
+  max-width: 500px;
+}
+
+/* Buttons */
+.explore-unity-page .floor-choice-button,
+.explore-unity-page .home-choice-button {
+  padding: clamp(10px, 2vw, 15px) clamp(20px, 3vw, 30px);
+  font-size: clamp(1em, 2vw, 1.3em);
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+  text-align: center;
+}
+
+/* Floor selection button */
+.explore-unity-page .floor-choice-button {
+  background-color: #ac2b37;
+  color: white;
+  border: none;
+  width: clamp(180px, 20vw, 250px); /* Adjusts width dynamically */
+}
+
+.explore-unity-page .floor-choice-button:hover {
+  background-color: #8c222c;
+  transform: scale(1.05);
+}
+
+/* Home button */
+.explore-unity-page .home-choice-button {
+  position: absolute;
+  top: clamp(10px, 3vw, 20px);
+  left: clamp(10px, 3vw, 20px);
+  background-color: #ccc;
+  color: black;
+  border: none;
+}
+
+.explore-unity-page .home-choice-button:hover {
+  background-color: #bbb;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .explore-unity-page {
+    padding: 10px;
   }
-  
-  .floor-title {
-    font-family: 'Serif';  /* Ensure the correct font */
-    font-size: 3em; 
-    color: #ac2b37;
-    margin: 0;
-    letter-spacing: 2px; /* Add a little spacing for distinction */
-    text-shadow: 2px 2px 4px rgba(131, 188, 235, 0.678); /* Subtle shadow for better readability */
-  }
-  
-  .explore-unity-page h1 {
-    font-family: 'Serif', cursive;
-    font-size: 3.5em;
-    color: #ac2b37;
-    margin-bottom: 15px;
-    letter-spacing: 1px;
-  }
-  
-  .explore-unity-page p {
-    font-size: 1.5em;
-    color: #070606;
-    margin-bottom: 30px;
-  }
-  
+
   .explore-unity-page .floor-selection {
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
-    align-items: center;
+    width: 100%;
   }
-  
+
   .explore-unity-page .floor-choice-button {
-    padding: 15px 30px;
-    font-size: 1.3em;
-    background-color: #ac2b37;
-    color: white;
-    border: none;
-    border-radius: 8px;
-    cursor: pointer;
-    width: 250px;
-    transition: background-color 0.3s ease, transform 0.2s ease;
+    width: 80%;
   }
-  
-  .explore-unity-page .floor-choice-button:hover {
-    background-color: #ac2b37;
-    transform: scale(1.05);
+}
+
+@media (max-width: 480px) {
+  .explore-unity-page {
+    padding: 10px;
   }
-  
+
+  .explore-unity-page h1 {
+    font-size: 2em;
+  }
+
+  .explore-unity-page p {
+    font-size: 1em;
+  }
+
+  .explore-unity-page .floor-choice-button,
   .explore-unity-page .home-choice-button {
-    position: absolute;
-    top: 20px;
-    left: 20px;
-    padding: 10px 20px;
-    font-size: 1.2em;
-    background-color: #5c5f5d;
-    color: white;
-    border: none;
-    border-radius: 8px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
+    font-size: 1em;
+    width: 90%;
   }
-  
-  .explore-unity-page .home-choice-button:hover {
-    background-color: #535854;
-  }
-  
-  /* Responsive Design */
-  @media (max-width: 768px) {
-    .explore-unity-page {
-      width: 100%;
-      padding: 15px;
-    }
-  
-    .explore-unity-page h1 {
-      font-size: 2.5em;
-    }
-  
-    .explore-unity-page .floor-choice-button {
-      width: 200px;
-      font-size: 1.1em;
-    }
-  }
-  
+}

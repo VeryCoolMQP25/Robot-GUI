@@ -114,7 +114,7 @@ p {
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: #007bff; 
+  background-color: #ac2b37; 
   color: white;
   font-weight: bold;
   border-radius: 15px;
@@ -129,7 +129,7 @@ p {
 
 
 .room:hover {
-  background-color: #5aa5f5;
+  background-color: #ac2b37;
   transform: scale(1.05);
 }
 
@@ -218,14 +218,14 @@ p {
 .study-areas-box,
 .another-floor-box,
 .restrooms-box {
-  border: 2px solid #007bff;
+  border: 2px solid #ac2b37;
 }
 
 .classrooms-box .room,
 .study-areas-box .room,
 .another-floor-box .room,
 .restrooms-box .room {
-  background-color: #007bff;
+  background-color: #ac2b37;
   color: white;
 }
 
@@ -233,6 +233,6 @@ p {
 .study-areas-box .room:hover,
 .another-floor-box .room:hover,
 .restrooms-box .room:hover {
-  background-color: #5aa5f5;
+  background-color: #ac2b37;
 }
 

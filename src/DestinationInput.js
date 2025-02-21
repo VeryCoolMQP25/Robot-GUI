@@ -5,11 +5,10 @@ import "./DestinationInput.css";
 
 function DestinationInput() {
   const [destination, setDestination] = useState("");
-  const [validRooms, setValidRooms] = useState(new Set()); // Store valid room names
+  const [validRooms, setValidRooms] = useState(new Set());
   const [ros, setRos] = useState(null);
   const navigate = useNavigate();
 
-  // Fetch room names from JSON
   useEffect(() => {
     fetch("/Unity_coords.json")
       .then((response) => response.json())
@@ -18,7 +17,7 @@ function DestinationInput() {
           const rooms = new Set();
           Object.keys(data).forEach((floor) => {
             Object.keys(data[floor]).forEach((room) => {
-              rooms.add(room); // Store room names
+              rooms.add(room);
             });
           });
           setValidRooms(rooms);
@@ -26,10 +25,7 @@ function DestinationInput() {
       })
       .catch((error) => console.error("Error loading room names:", error));
 
-    // Connect to ROS
-    const rosConnection = new ROSLIB.Ros({
-      url: "ws://localhost:9090",
-    });
+    const rosConnection = new ROSLIB.Ros({ url: "ws://localhost:9090" });
 
     rosConnection.on("connection", () => console.log("Connected to ROS"));
     rosConnection.on("error", (error) => console.error("ROS connection error:", error));
@@ -53,7 +49,6 @@ function DestinationInput() {
       return;
     }
 
-    // Send the destination to ROS
     if (ros) {
       const topic = new ROSLIB.Topic({
         ros,
@@ -68,7 +63,6 @@ function DestinationInput() {
       console.error("ROS connection not available");
     }
 
-    // Navigate to the path page
     navigate(`/Path/${formattedDestination}`);
   };
 
@@ -84,6 +78,7 @@ function DestinationInput() {
           onChange={(e) => setDestination(e.target.value)}
         />
         <button onClick={handleSubmit} className="submit-button">Submit</button>
+        <button onClick={() => navigate("/")} className="home-button">Home</button>
       </div>
     </div>
   );

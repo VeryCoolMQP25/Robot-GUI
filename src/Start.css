@@ -1,14 +1,4 @@
-/* Global Styles */
-/* body {
-  font-family: 'Roboto', Arial, sans-serif;
-  background-color: #f0f4f8;
-  margin: 0;
-  padding: 0;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100vh;
-} */
+
 
 /* Start Page */
 .start-page {
@@ -81,7 +71,7 @@
 
 /* Caption */
 .caption {
-  font-size: clamp(0.8em, 2vw, 1em);
+  font-size: clamp(1em, 2vw, 1.5em);
   font-style: italic;
   color: #080808;
 }
