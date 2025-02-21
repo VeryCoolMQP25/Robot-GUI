@@ -5,12 +5,9 @@ body {
   background-color: #f0f4f8;
   margin: 0;
   padding: 0;
-  display: flex;
-  justify-content: center;
-  align-items: center;
   min-height: 100vh; 
+  overflow-y: auto; /* Ensure scrolling is enabled */
 }
-
 
 .app {
   text-align: center;
@@ -19,11 +16,15 @@ body {
   margin: auto;
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: flex-start; /* Change from center to flex-start */
   align-items: center;
-  height: 100%;
+  min-height: 100vh;
+  height: auto; /* Allow content to expand */
   padding: 20px;
+  overflow-y: auto; /* Allow scrolling within app */
 }
+
+
 
 
 h1 {
