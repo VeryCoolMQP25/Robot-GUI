@@ -3,12 +3,12 @@ import { useNavigate } from "react-router-dom";
 import React, { useState, useEffect } from "react";
 import "./App.css";
 
-function Floor4() {
+function Floor3() {
   const navigate = useNavigate();
   const [ros, setRos] = useState(null);
   const [isConnected, setIsConnected] = useState(false);
   const [roomCoordinates, setRoomCoordinates] = useState({});
-  const [floor4Rooms, setFloor4Rooms] = useState([]);
+  const [floor3Rooms, setFloor3Rooms] = useState([]);
 
   useEffect(() => {
     console.log("Fetching room coordinates...");
@@ -18,12 +18,11 @@ function Floor4() {
         console.log("Room coordinates loaded:", data);
         setRoomCoordinates(data);
   
-        if (data.floor_4) {
-          const allRooms = Object.keys(data.floor_4); // Get all room names
-  
-          setFloor4Rooms(allRooms); // Store all rooms
+        if (data.floor_3) {
+          const allRooms = Object.keys(data.floor_3); // Get all room names
+          setFloor3Rooms(allRooms); // Store all rooms
         } else {
-          console.error("Floor 4 data missing in JSON");
+          console.error("Floor 3 data missing in JSON");
         }
       })
       .catch((error) => {
@@ -67,15 +66,14 @@ function Floor4() {
 
   return (
     <div className="app">
-        <h1 className="floor-title">Floor 4</h1>
-
+      <h1 className="floor-title">Floor 3</h1>
 
       {Object.keys(roomCoordinates).length > 0 ? (
         <>
           <div className="section classrooms-row">
             <p className="section-title">Classrooms</p>
             <div className="floor-map">
-              {floor4Rooms
+              {floor3Rooms
                 .filter((room) => room.startsWith("UH")) // Selects only rooms that start with "UH"
                 .map((room) => (
                   <div key={room} onClick={() => handleNavigation(room)} className="room">
@@ -129,13 +127,10 @@ function Floor4() {
         </>
       ) : (
         <p>Loading room coordinates...</p>
-
       )}
-      <button className="home-button" onClick={() => navigate("/")}>
-        Home
-      </button>
+      <button className="home-button" onClick={() => navigate("/")}>Home</button>
     </div>
   );
 }
 
-export default Floor4;
+export default Floor3;
