@@ -24,6 +24,13 @@ function Start() {
           </button>
           <p className="caption">(If you're feeling adventurous)</p>
         </div>
+
+        <div className="option">
+          <button className="choice-button" onClick={() => navigate("/speaker")}>
+            Speaker
+          </button>
+        </div>
+
       </div>
     </div>
   );
