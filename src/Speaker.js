@@ -34,7 +34,7 @@ function Home() {
       </button>
 
       <div className="app">
-        <p>Please click on the microphone when you are ready & speak clearly!</p>
+        <p>Please click on the microphone and clearly say "hey Tori" when you are ready!</p>
         <button onClick={speaker}>
           <img src="https://www.iconpacks.net/icons/1/free-microphone-icon-342-thumb.png" alt="Microphone" />
         </button>
