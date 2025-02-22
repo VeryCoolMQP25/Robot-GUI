@@ -1,0 +1,104 @@
+/* Full-page container to center the dialog */
+.destination-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  width: 100vw;
+  background-color: white;
+  padding: 20px;
+  box-sizing: border-box;
+}
+
+/* Dialog box with a responsive width */
+.dialog-box {
+  background: white;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  text-align: center;
+  width: 90%;
+  max-width: 350px;
+}
+
+/* Title styling */
+.dialog-box h2 {
+  color: #ac2b37;
+  font-size: 1.5em;
+  margin-bottom: 15px;
+}
+
+/* Input field styling */
+.destination-input {
+  width: 100%;
+  padding: 12px;
+  border: 2px solid #ac2b37;
+  border-radius: 5px;
+  font-size: 1em;
+  margin-bottom: 15px;
+  box-sizing: border-box;
+}
+
+/* Button shared styling */
+.submit-button,
+.home-button {
+  width: 100%;
+  max-width: 200px;
+  padding: clamp(10px, 2vw, 15px) clamp(20px, 3vw, 30px);
+  font-size: clamp(1em, 2vw, 1.3em);
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+  text-align: center;
+  border: none;
+  display: block;
+  margin: 10px auto 0;
+  font-family: 'Roboto', Arial, sans-serif;
+}
+
+/* Submit button specific styles */
+.submit-button {
+  background-color: #ac2b37;
+  color: white;
+}
+
+.submit-button:hover {
+  background-color: #8c222c;
+  transform: scale(1.05);
+}
+
+/* Home button styles */
+.home-button {
+  background-color: #ccc;
+  color: black;
+}
+
+.home-button:hover {
+  background-color: #bbb;
+  transform: scale(1.05);
+}
+
+/* Improve input focus */
+.destination-input:focus {
+  outline: none;
+  border-color: #8c222c;
+  box-shadow: 0 0 5px rgba(172, 43, 55, 0.5);
+}
+
+/* Ensures everything scales well on smaller screens */
+@media (max-width: 480px) {
+  .dialog-box {
+    padding: 15px;
+  }
+  
+  .destination-input {
+    font-size: 0.9em;
+    padding: 10px;
+  }
+
+  .submit-button, 
+  .home-button {
+    font-size: 0.9em;
+    padding: 10px;
+  }
+}
