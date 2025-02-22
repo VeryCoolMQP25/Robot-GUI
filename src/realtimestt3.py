@@ -23,14 +23,14 @@ def wake_word(text):
         if "hey tori" in cleaned_text or "hey tory" in cleaned_text or "hey torry" in cleaned_text:
             engine.say("Hi, I'm Tori, a tour guide robot in Unity Hall. Would you like to say a navigation command or ask me a question?")
             engine.runAndWait()
-            time.sleep(0.5)
+            time.sleep(7)
             return True
     return False
 
 def handle_navigation(recorder, classifier):
     engine.say("Where do you want to go?")
     engine.runAndWait()
-    time.sleep(1)
+    time.sleep(2)
     
     attempts = 0
     MAX_ATTEMPTS = 3
@@ -133,8 +133,8 @@ def main():
                             break 
                     elif "question" in cleaned_text:
                         question(recorder)
-                        break
-                time.sleep(0.1)
+                        return
+                time.sleep(1)
 
     except KeyboardInterrupt:
         print("Keyboard Interrupt")
