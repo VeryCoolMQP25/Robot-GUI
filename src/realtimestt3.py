@@ -1,7 +1,9 @@
+
 #third time IS the charm 
 import pyttsx3
 import time
 import string
+import subprocess
 from RealtimeSTT import AudioToTextRecorder
 from nav_classifier import RoomClassifier
 from llm_rag import LLM_RAG
@@ -10,6 +12,8 @@ classifier = RoomClassifier()
 llm = LLM_RAG()
 engine = pyttsx3.init()
 
+# global_var = None
+room_num = None
 
 def clean_text(text):
     cleaned_text = text.strip().lower()
@@ -48,7 +52,27 @@ def handle_navigation(recorder, classifier):
                 engine.say(response['message'])
                 engine.runAndWait()
                 print("Location info:", classifier.extract_location_info(cleaned_text))
-                return True
+                var = classifier.extract_location_info(cleaned_text) 
+                room_num = var['room_number']
+                print(room_num)
+                floor = var['floor']
+                # floor = global_var['floor']
+                if floor == "1": 
+                    print("uno")
+                    global_var = 1
+                elif floor == "2": 
+                    print("dos")
+                    global_var = 2
+                elif floor == "3": 
+                    print("tres")
+                    global_var = 3
+                elif floor == "4": 
+                    print("quattros")
+                    global_var = 4
+                elif floor == "5": 
+                    print("cinco")
+                    global_var = 5
+                return True, global_var
             
             attempts += 1
             if attempts < MAX_ATTEMPTS:
@@ -107,6 +131,7 @@ def main():
             print("Listening for the wake phrase...")
             engine.say("Please say a wake word when you are ready")
             engine.runAndWait()
+            time.sleep(1)
             
             while True:  # wake word loop
                 text = recorder.text()
@@ -122,11 +147,39 @@ def main():
                 if text:
                     cleaned_text = clean_text(text)
                     if "navigation" in cleaned_text:
-                        nav_result = handle_navigation(recorder, classifier)
+                        nav_result, global_var = handle_navigation(recorder, classifier)
                         if exit(text):
                             return
                         if nav_result:  # successful navigation 
-                            print("insert nav stack code")
+                            print("get the location to the gui somehow")
+                            print(global_var)
+                            if global_var == 1: #SEND TO FLOOR1.JS THROUGH APP.PY
+                                try: 
+                                    subprocess.run(["node", "Floor1.js"], check=True, capture_output=True, text=True) ###figure out how to feed room number into function
+                                except subprocess.CalledProcessError as e:
+                                    print("Error running JavaScript file:", e.stderr)
+                            elif global_var == 2: 
+                                try: 
+                                    subprocess.run(["node", "Floor2.js"], check=True, capture_output=True, text=True)
+                                except subprocess.CalledProcessError as e:
+                                    print("Error running JavaScript file:", e.stderr)
+                            elif global_var == 3: 
+                                try: 
+                                    subprocess.run(["node", "Floor3.js"], check=True, capture_output=True, text=True)
+                                except subprocess.CalledProcessError as e:
+                                    print("Error running JavaScript file:", e.stderr)
+                            elif global_var == 4: 
+                                try: 
+                                    subprocess.run(["node", "Floor4.js"], check=True, capture_output=True, text=True)
+                                except subprocess.CalledProcessError as e:
+                                    print("Error running JavaScript file:", e.stderr)
+                            elif global_var == 5: 
+                                try: 
+                                    subprocess.run(["node", "Floor5.js"], check=True, capture_output=True, text=True)
+                                except subprocess.CalledProcessError as e:
+                                    print("Error running JavaScript file:", e.stderr)
+
+
                             classifier.reset_context()  # reset context after navigation
                             return
                         if not nav_result:  # restart after 3 attempts
