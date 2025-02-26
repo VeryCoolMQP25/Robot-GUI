@@ -17,12 +17,22 @@ engine = pyttsx3.init()
 
 room_num = None #global variable 
 
-async def send_room_number(room_number):
+async def send_room_and_floor(room_number, floor_number):
+    print(f"Sending room number: {room_number}, floor number: {floor_number}")
     uri = "ws://localhost:8765"  # WebSocket server URI
+    data = {
+        "room_number": room_number,
+        "floor_number": floor_number
+    }
+    
+    # Convert the dictionary to a JSON string
+    json_data = json.dumps(data)
+    print(json_data)
+    
+    # Connect to the WebSocket server
     async with websockets.connect(uri) as websocket:
-        await websocket.send(room_number)  # Send room number to the WebSocket server
-        print(f"Sent room number: {room_number}")
-
+        await websocket.send(json_data)  # Send the JSON data to the WebSocket server
+        print(f"Sent room number: {room_number} and floor number: {floor_number}")
 
 def clean_text(text):
     cleaned_text = text.strip().lower()
@@ -64,6 +74,8 @@ def handle_navigation(recorder, classifier):
                 var = classifier.extract_location_info(cleaned_text) 
                 room_num = var['room_number']
                 print(room_num)
+                if room_num is None: 
+                    room_num = var['room']
                 floor = var['floor']
                 return True, room_num, floor
             
@@ -147,8 +159,7 @@ def main():
                             print("get the location to the gui somehow")
                             print(floor)
                             print(room_num)
-                            asyncio.run(send_room_number(room_num))
-                            # start_websocket_server(room_num)
+                            asyncio.run(send_room_and_floor(room_num, floor))
                             classifier.reset_context()  # reset context after navigation
                             return
                         if not nav_result:  # restart after 3 attempts
@@ -162,10 +173,9 @@ def main():
         print("Keyboard Interrupt")
 
 if __name__ == "__main__":
-    # main()
-    asyncio.run(send_room_number("UH400"))
-    print("server running")
-    # start_websocket_server("UH300")
+    main()
+    # asyncio.run(send_room_and_floor("UH400", "4"))
+    # print("server running")
 
 #what if user wants to go to its current location? Does this need to be a case in the code in case Tori is already at localized location? 
 
