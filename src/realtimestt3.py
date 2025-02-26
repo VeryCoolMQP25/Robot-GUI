@@ -1,19 +1,28 @@
-
 #third time IS the charm 
 import pyttsx3
 import time
 import string
 import subprocess
 from RealtimeSTT import AudioToTextRecorder
+from websocket_server import WebsocketServer
+import json
 from nav_classifier import RoomClassifier
 from llm_rag import LLM_RAG
+import asyncio
+import websockets
 
 classifier = RoomClassifier()
 llm = LLM_RAG()
 engine = pyttsx3.init()
 
-# global_var = None
-room_num = None
+room_num = None #global variable 
+
+async def send_room_number(room_number):
+    uri = "ws://localhost:8765"  # WebSocket server URI
+    async with websockets.connect(uri) as websocket:
+        await websocket.send(room_number)  # Send room number to the WebSocket server
+        print(f"Sent room number: {room_number}")
+
 
 def clean_text(text):
     cleaned_text = text.strip().lower()
@@ -56,23 +65,7 @@ def handle_navigation(recorder, classifier):
                 room_num = var['room_number']
                 print(room_num)
                 floor = var['floor']
-                # floor = global_var['floor']
-                if floor == "1": 
-                    print("uno")
-                    global_var = 1
-                elif floor == "2": 
-                    print("dos")
-                    global_var = 2
-                elif floor == "3": 
-                    print("tres")
-                    global_var = 3
-                elif floor == "4": 
-                    print("quattros")
-                    global_var = 4
-                elif floor == "5": 
-                    print("cinco")
-                    global_var = 5
-                return True, global_var
+                return True, room_num, floor
             
             attempts += 1
             if attempts < MAX_ATTEMPTS:
@@ -147,39 +140,15 @@ def main():
                 if text:
                     cleaned_text = clean_text(text)
                     if "navigation" in cleaned_text:
-                        nav_result, global_var = handle_navigation(recorder, classifier)
+                        nav_result, room_num, floor = handle_navigation(recorder, classifier)
                         if exit(text):
                             return
                         if nav_result:  # successful navigation 
                             print("get the location to the gui somehow")
-                            print(global_var)
-                            if global_var == 1: #SEND TO FLOOR1.JS THROUGH APP.PY
-                                try: 
-                                    subprocess.run(["node", "Floor1.js"], check=True, capture_output=True, text=True) ###figure out how to feed room number into function
-                                except subprocess.CalledProcessError as e:
-                                    print("Error running JavaScript file:", e.stderr)
-                            elif global_var == 2: 
-                                try: 
-                                    subprocess.run(["node", "Floor2.js"], check=True, capture_output=True, text=True)
-                                except subprocess.CalledProcessError as e:
-                                    print("Error running JavaScript file:", e.stderr)
-                            elif global_var == 3: 
-                                try: 
-                                    subprocess.run(["node", "Floor3.js"], check=True, capture_output=True, text=True)
-                                except subprocess.CalledProcessError as e:
-                                    print("Error running JavaScript file:", e.stderr)
-                            elif global_var == 4: 
-                                try: 
-                                    subprocess.run(["node", "Floor4.js"], check=True, capture_output=True, text=True)
-                                except subprocess.CalledProcessError as e:
-                                    print("Error running JavaScript file:", e.stderr)
-                            elif global_var == 5: 
-                                try: 
-                                    subprocess.run(["node", "Floor5.js"], check=True, capture_output=True, text=True)
-                                except subprocess.CalledProcessError as e:
-                                    print("Error running JavaScript file:", e.stderr)
-
-
+                            print(floor)
+                            print(room_num)
+                            asyncio.run(send_room_number(room_num))
+                            # start_websocket_server(room_num)
                             classifier.reset_context()  # reset context after navigation
                             return
                         if not nav_result:  # restart after 3 attempts
@@ -193,7 +162,10 @@ def main():
         print("Keyboard Interrupt")
 
 if __name__ == "__main__":
-    main()
+    # main()
+    asyncio.run(send_room_number("UH400"))
+    print("server running")
+    # start_websocket_server("UH300")
 
 #what if user wants to go to its current location? Does this need to be a case in the code in case Tori is already at localized location? 
 
