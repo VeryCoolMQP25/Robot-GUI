@@ -70,7 +70,7 @@ function Path() {
   
   return (
     <div className="path-page" style ={pathStyle}>
-      <h1 className="left-heading">Follow Yours Truly</h1>
+      <h1 className="left-heading">Follow Me!</h1>
       <button onClick={handleExit} className="exit-button">
         Exit
       </button>
