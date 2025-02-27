@@ -23,12 +23,13 @@
   left: 0;
   right: 0;
   bottom: 0;
-  /* background-image: url("united.jpg"); Correct path */
+  background-image: url("./Unity_Hall.jpg"); /* Ensure correct path */
   background-repeat: no-repeat;
   background-position: center;
-  background-size: cover;
-  opacity: 0.8; /* Adjusts transparency of the background only */
-  z-index: -1; /* Ensures the image stays behind the content */
+  background-size: contain; /* Keeps original resolution */
+  background-attachment: fixed; /* Prevents scrolling issues */
+  opacity: 0.5; /* Slight transparency */
+  z-index: -1; /* Keeps background behind content */
 }
 
 /* Heading */
@@ -88,6 +89,6 @@
 }
 
 .wpi-logo {
-  max-width: clamp(80px, 10vw, 120px);
+  max-width: clamp(120px, 15vw, 180px); 
   height: auto;
 }
