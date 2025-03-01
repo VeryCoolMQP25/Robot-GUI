@@ -7,28 +7,57 @@ function Home() {
   const [statusMessage, setStatusMessage] = useState("");
   const [output, setOutput] = useState("");
   const navigate = useNavigate();
-  const [roomNumber, setRoomNumber] = useState(""); // Added state for room number
-  const [floorNumber, setFloorNumber] = useState(""); // Added state for floor number
+  const [roomNumber, setRoomNumber] = useState(""); 
+  const [floorNumber, setFloorNumber] = useState(""); 
+  const [messageCount, setMessageCount] = useState(0);
 
   useEffect(() => {
-    const socket = new WebSocket("ws://localhost:8765"); // Connect to WebSocket server
+    const socket = new WebSocket("ws://localhost:8765"); 
 
     socket.onopen = () => {
       console.log("WebSocket connection established");
     };
 
     socket.onmessage = (event) => {
-      const receivedData = JSON.parse(event.data); // Assuming the server sends a JSON string with room_number and floor_number
-      const { room_number, floor_number } = receivedData;
+      console.log("Message received from WebSocket server:", event.data);
+      try {
+        const receivedData = JSON.parse(event.data); // Try parsing the data as JSON
+        
+        const { room_number, floor_number } = receivedData;
+        console.log("Received room number:", room_number);
+        console.log("Received floor number:", floor_number);
+    
+        setRoomNumber(room_number); // Update the room number in state
+        setFloorNumber(floor_number); // Update the floor number in state
+      } catch (error) {
+        // If it's not a JSON, it's likely just a room number as a string
+        const receivedRoomNumber = event.data;
+        console.log("Received room number:", receivedRoomNumber);
+        setRoomNumber(receivedRoomNumber);
+        navigate(`/Path/${receivedRoomNumber}`); // Navigate to the new room path
+      }
+      // setMessageCount(prevCount => prevCount + 1); // Increment the message count
 
-      console.log("Received room number:", room_number);
-      console.log("Received floor number:", floor_number);
+      // if (messageCount === 0) {
+      //   const receivedData = JSON.parse(event.data); // Assuming the server sends a JSON string with room_number and floor_number
+      //   const { room_number, floor_number } = receivedData;
 
-      setRoomNumber(room_number); // Update the room number in state
-      setFloorNumber(floor_number); // Update the floor number in state
+      //   console.log("First message received")
+      //   console.log("Received room number:", room_number);
+      //   console.log("Received floor number:", floor_number);
 
-      // Redirect to the path with room number and floor number
-      navigate(`/room/${room_number}/floor/${floor_number}`);
+      //   setRoomNumber(room_number); // Update the room number in state
+      //   setFloorNumber(floor_number); // Update the floor number in state
+      // }
+      // else{
+      //   const receivedRoomNumber = event.data; // Receive the room number
+      //   console.log("Received room number:", receivedRoomNumber);
+      //   console.log("Subsequent message received, heading to:", receivedRoomNumber);
+      //   setRoomNumber(receivedRoomNumber);
+      //   navigate(`/Path/${receivedRoomNumber}`); // Not working!!
+      // }
+
+
     };
 
     socket.onerror = (error) => {

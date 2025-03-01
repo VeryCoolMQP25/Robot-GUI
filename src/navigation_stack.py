@@ -1,19 +1,15 @@
-import asyncio
-import websockets
 import rclpy
 from rclpy.node import Node
 from geometry_msgs.msg import PoseStamped
-from nav2_simple_commander.robot_navigator import BasicNavigator
-import json
+from geometry_msgs.msg import Point, Quaternion
 
 class NavigationNode(Node):
     def __init__(self):
-        super().__init__('room_navigation_node')
-        self.navigator = BasicNavigator()
+        super().__init__('navigation_node')
 
-    def navigate_to_room_and_floor(self, room_number, floor_number):
-        # Define coordinates for rooms considering floor information
-        room_coordinates = {
+        self.goal_publisher = self.create_publisher(PoseStamped, '/goal_pose', 10)
+        
+        self.room_coordinates = { # I will load from JSON file, this is just temporarily copy-pasted in 
             "floor_1": {
                 "Restrooms": { "x": -4, "y": 0.125, "z": 0.0, "orientationZ": 0.00487, "orientationW": 0.99999 },
                 "UH100": { "x": 2, "y": 19.2, "z": 0.0, "orientationZ": 0.00487, "orientationW": 0.99999 },
@@ -65,73 +61,35 @@ class NavigationNode(Node):
             }
         }
 
+    def navigate(self, room_number, floor_number):
         floor_key = f"floor_{floor_number}"
         print(floor_number)
         print(floor_key)
 
-        # Check if the floor exists in room_coordinates
-        if floor_key in room_coordinates:
-            # Check if the room exists in the floor's coordinates
-            if room_number in room_coordinates[floor_key]:
-                # Unpack room coordinates
-                room_data = room_coordinates[floor_key][room_number]
-                x = room_data["x"]
-                y = room_data["y"]
-                z = room_data["z"]
-                orientationZ = room_data["orientationZ"]
-                orientationW = room_data["orientationW"]
+        if floor_key in self.room_coordinates:
+            if room_number in self.room_coordinates[floor_key]:
+                coordinates = self.room_coordinates[floor_key][room_number]
+            
+            goal_msg = PoseStamped()
+            current_time = self.get_clock().now()
 
-                # Create a goal Pose
-                goal = PoseStamped()
-                goal.header.frame_id = 'map'  # You might need to change this to your robot's map frame
-                goal.pose.position.x = x
-                goal.pose.position.y = y
-                goal.pose.position.z = z
-                goal.pose.orientation.z = orientationZ
-                goal.pose.orientation.w = orientationW
-                
-                self.navigator.goToPose(goal)
-                print("success")
-                self.get_logger().info(f"Robot is navigating to room {room_number}, floor {floor_number} at coordinates ({x}, {y}, {z}) with orientation ({orientationZ}, {orientationW})")
-            else:
-                # Room not found for this floor
-                print(f"Room {room_number} not found on floor {floor_number}")
-                self.get_logger().warn(f"Room {room_number} not found on floor {floor_number}!")
+            goal_msg.header.stamp = current_time.to_msg()  # current time
+            goal_msg.header.frame_id = "map"
+
+            goal_msg.pose.position = Point(x=coordinates["x"], y=coordinates["y"], z=coordinates["z"])
+            goal_msg.pose.orientation = Quaternion(x=0.0, y=0.0, z=coordinates["orientationZ"], w=coordinates["orientationW"])
+
+            self.goal_publisher.publish(goal_msg)
+            self.get_logger().info(f"Navigating to {room_number} on floor {floor_number}. Goal published.")
+    
         else:
-            # Floor not found in the room coordinates
-            print(f"Floor {floor_number} not found in coordinates mapping!")
-            self.get_logger().warn(f"Floor {floor_number} not found in coordinates mapping!")
+            self.get_logger().error(f"Room {room_number} not found.")
 
-# WebSocket server to handle incoming messages
-async def websocket_server(websocket):
-    async for message in websocket:
-        print(f"Received message: {message}")
-        
-        # Assuming the message contains both room_number and floor_number as a JSON string
-        try:
-            data = json.loads(message)
-            room_number = data["room_number"]
-            floor_number = data["floor_number"]
+        rclpy.spin(self)
+        self.destroy_node()
+        rclpy.shutdown()
 
-            # Initiate ROS navigation for received room number and floor number
-            rclpy.init()
-            navigation_node = NavigationNode()
-            navigation_node.navigate_to_room_and_floor(room_number, floor_number)
-            rclpy.spin(navigation_node)
-
-        except json.JSONDecodeError:
-            print("Error parsing JSON message.")
-            await websocket.send("Invalid JSON data received.")
-        except KeyError:
-            print("Missing room_number or floor_number in message.")
-            await websocket.send("Missing room_number or floor_number in message.")
-
-
-# Start the WebSocket server
-async def main():
-    server = await websockets.serve(websocket_server, "localhost", 8765)
-    print("WebSocket server started on ws://localhost:8765")
-    await server.wait_closed()
-
-if __name__ == "__main__":
-    asyncio.run(main())
+if __name__ == '__main__':
+    rclpy.init()
+    nav_stack = NavigationNode()
+    nav_stack.navigate("UH400", "4") #test 

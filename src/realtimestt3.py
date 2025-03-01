@@ -1,4 +1,3 @@
-#third time IS the charm 
 import pyttsx3
 import time
 import string
@@ -8,31 +7,15 @@ from websocket_server import WebsocketServer
 import json
 from nav_classifier import RoomClassifier
 from llm_rag import LLM_RAG
+from navigation_stack import NavigationNode
+import rclpy
 import asyncio
 import websockets
 
 classifier = RoomClassifier()
 llm = LLM_RAG()
+
 engine = pyttsx3.init()
-
-room_num = None #global variable 
-
-async def send_room_and_floor(room_number, floor_number):
-    print(f"Sending room number: {room_number}, floor number: {floor_number}")
-    uri = "ws://localhost:8765"  # WebSocket server URI
-    data = {
-        "room_number": room_number,
-        "floor_number": floor_number
-    }
-    
-    # Convert the dictionary to a JSON string
-    json_data = json.dumps(data)
-    print(json_data)
-    
-    # Connect to the WebSocket server
-    async with websockets.connect(uri) as websocket:
-        await websocket.send(json_data)  # Send the JSON data to the WebSocket server
-        print(f"Sent room number: {room_number} and floor number: {floor_number}")
 
 def clean_text(text):
     cleaned_text = text.strip().lower()
@@ -145,7 +128,7 @@ def main():
                 if wake_word(text):
                     break
             
-            while True: #command loop 
+            while True: # command loop 
                 text = recorder.text()
                 if exit(text):
                     return
@@ -156,10 +139,11 @@ def main():
                         if exit(text):
                             return
                         if nav_result:  # successful navigation 
-                            print("get the location to the gui somehow")
                             print(floor)
                             print(room_num)
-                            asyncio.run(send_room_and_floor(room_num, floor))
+                            rclpy.init() # have to call this here otherwise the script doesn't work right 
+                            nav_stack = NavigationNode() #^
+                            nav_stack.navigate(room_num, floor)
                             classifier.reset_context()  # reset context after navigation
                             return
                         if not nav_result:  # restart after 3 attempts
@@ -174,9 +158,3 @@ def main():
 
 if __name__ == "__main__":
     main()
-    # asyncio.run(send_room_and_floor("UH400", "4"))
-    # print("server running")
-
-#what if user wants to go to its current location? Does this need to be a case in the code in case Tori is already at localized location? 
-
-#if no audio for 10 seconds, it will turn off functionality needed 

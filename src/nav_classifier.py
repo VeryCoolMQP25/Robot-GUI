@@ -10,15 +10,15 @@ class RoomClassifier:
         
         # Define room patterns with fixed floor associations
         self.room_patterns = { 
-            "elevator": {
+            "Elevator": {
                 "patterns": ["elevator", "lift"], 
                 "fixed_floor": None  
             },
-            "stairs": {
+            "Stairs": {
                 "patterns": ["stairs", "stair"], #weird bug, but each pattern needs at least 2 or it won't work 
                 "fixed_floor": None
             },
-            "restrooms": {
+            "Restrooms": {
                 "patterns": ["bathroom", "restroom", "toilet", "washroom"],
                 "fixed_floor": None
             },
@@ -26,12 +26,16 @@ class RoomClassifier:
                 "patterns": ["curtain area", "curtain", "curtains"],
                 "fixed_floor": "2"
             },
-            "career development center": {
+            "Career_Development_Center": {
                 "patterns": ["career center", "career services", "career office", "CDC", "career development center", "career area", "heebner CDC", "heebner career development center"],
                 "fixed_floor": "5" 
             }, 
-            "study lounge": {
+            "Study_Lounge": {
                 "patterns": ["lounge", "window"],
+                "fixed_floor": "None" 
+            }, 
+            "Study_Area": {
+                "patterns": ["area"],
                 "fixed_floor": "None" 
             }, 
             "UH100": {
@@ -220,7 +224,7 @@ if __name__ == "__main__":
         # "Navigate to the curtain area",  #will automatically use second floor 
         # "Navigate to the restrooms", #unknown floor 
         # "Can you show me where room 156 is?",
-        # "Navigate to room 425.", 
+        "Navigate to unity 100.", 
         # "Take me to tech suite 316 please.", 
         # "Take me to blah blah blah", #doesn't exist 
         "Take me to the pear lab on the second floor", 
