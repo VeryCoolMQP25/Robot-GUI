@@ -24,7 +24,7 @@
   background-image: url("./Unity_Hall.jpg");
   background-repeat: no-repeat;
   background-position: center;
-  background-size: cover; /* Full coverage while being responsive */
+  background-size: cover;
   background-attachment: fixed;
   opacity: 0.5;
   z-index: -1;
@@ -33,33 +33,33 @@
 /* Heading */
 .start-page h1 {
   font-family: 'Serif';
-  font-size: clamp(2em, 4vw, 3.5em);
-  margin-bottom: 2vh;
+  font-size: clamp(3em, 5vw, 4.5em); /* Increased font size */
+  margin-bottom: 3vh;
   color: #ac2b37;
-  background-color: rgba(255, 255, 255, 0.8); /* White background with slight transparency */
-  padding: 0.5vh 1vw; /* Adds some spacing around text */
-  border-radius: 10px; /* Rounded corners*/
-  display: inline-block; /* Keeps background only around the text */
+  background-color: rgba(255, 255, 255, 0.9);
+  padding: 1vh 2vw;
+  border-radius: 12px;
+  display: inline-block;
 }
 
 /* Button Container */
 .button-container {
   display: flex;
   flex-direction: column;
-  gap: 2vh;
+  gap: 3vh;
   align-items: center;
   width: 100%;
 }
 
 /* Buttons */
 .choice-button {
-  padding: 2vh 5vw;
-  font-size: clamp(1em, 2.5vw, 1.5em); /* Dynamic font */
-  width: clamp(200px, 30vw, 300px); /* Responsive width */
+  padding: 3vh 6vw;
+  font-size: clamp(1.5em, 3vw, 2em); /* Larger dynamic font */
+  width: clamp(250px, 35vw, 350px); /* Increased width */
   background-color: #ac2b37;
   color: white;
   border: none;
-  border-radius: 10px;
+  border-radius: 12px;
   cursor: pointer;
   transition: transform 0.2s ease, background-color 0.3s ease;
   text-align: center;
@@ -68,12 +68,12 @@
 /* Hover Effect */
 .choice-button:hover {
   background-color: #8f1f2d;
-  transform: scale(1.05);
+  transform: scale(1.07);
 }
 
 /* Caption */
 .caption {
-  font-size: clamp(1em, 2vw, 1.5em);
+  font-size: clamp(1.2em, 2.5vw, 2em); /* Increased font size */
   font-style: italic;
   color: #080808;
 }
@@ -84,13 +84,13 @@
   display: flex;
   justify-content: left;
   align-items: left;
-  padding: 2vh 2vw;
+  padding: 3vh 3vw;
   position: absolute;
   bottom: 0;
 }
 
 /* Larger, Dynamic Logo */
 .wpi-logo {
-  max-width: clamp(150px, 20vw, 200px); /* Scales dynamically */
+  max-width: clamp(200px, 25vw, 250px); /* Increased size */
   height: auto;
 }
