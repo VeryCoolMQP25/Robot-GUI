@@ -17,9 +17,9 @@ function Floor3() {
       .then((data) => {
         console.log("Room coordinates loaded:", data);
         setRoomCoordinates(data);
-  
+
         if (data.floor_3) {
-          const allRooms = Object.keys(data.floor_3); // Get all room names
+          const allRooms = Object.keys(data.floor_3); // Get all room names for Floor 3
           setFloor3Rooms(allRooms); // Store all rooms
         } else {
           console.error("Floor 3 data missing in JSON");
@@ -30,9 +30,48 @@ function Floor3() {
         setRoomCoordinates({});
       });
   }, []);
-      
+
   const handleNavigation = (room) => {
     navigate(`/Path/${room}`);
+    
+    if (ros && isConnected && roomCoordinates.floor_3[room]) {
+      const goalPublisher = new ROSLIB.Topic({
+        ros: ros,
+        name: "/goal_pose",
+        messageType: "geometry_msgs/PoseStamped",
+      });
+
+      const currentTime = new Date();
+      const coordinates = roomCoordinates.floor_3[room]; // Updated to use floor_3
+
+      const goalMessage = new ROSLIB.Message({
+        header: {
+          stamp: {
+            sec: Math.floor(currentTime.getTime() / 1000),
+            nanosec: (currentTime.getTime() % 1000) * 1e6,
+          },
+          frame_id: "map",
+        },
+        pose: {
+          position: {
+            x: coordinates.x,
+            y: coordinates.y,
+            z: coordinates.z || 0.0,
+          },
+          orientation: {
+            x: 0.0,
+            y: 0.0,
+            z: coordinates.orientationZ,
+            w: coordinates.orientationW,
+          },
+        },
+      });
+
+      goalPublisher.publish(goalMessage);
+      console.log("Published goal pose:", goalMessage);
+    } else {
+      console.error("ROS is not connected or coordinates are missing for", room);
+    }
   };
 
   useEffect(() => {
