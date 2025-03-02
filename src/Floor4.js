@@ -19,9 +19,8 @@ function Floor4() {
         setRoomCoordinates(data);
   
         if (data.floor_4) {
-          const allRooms = Object.keys(data.floor_4); // Get all room names
-  
-          setFloor4Rooms(allRooms); // Store all rooms
+          const allRooms = Object.keys(data.floor_4); // Get all room names for floor 4
+          setFloor4Rooms(allRooms); // Store all rooms for floor 4
         } else {
           console.error("Floor 4 data missing in JSON");
         }
@@ -31,44 +30,82 @@ function Floor4() {
         setRoomCoordinates({});
       });
   }, []);
-      
+
   const handleNavigation = (room) => {
     navigate(`/Path/${room}`);
+    
+    if (ros && isConnected && roomCoordinates.floor_4[room]) {
+      const goalPublisher = new ROSLIB.Topic({
+        ros: ros,
+        name: "/goal_pose",
+        messageType: "geometry_msgs/PoseStamped",
+      });
+
+      const currentTime = new Date();
+      const coordinates = roomCoordinates.floor_4[room];
+      
+      const goalMessage = new ROSLIB.Message({
+        header: {
+          stamp: {
+            sec: Math.floor(currentTime.getTime() / 1000),
+            nanosec: (currentTime.getTime() % 1000) * 1e6,
+          },
+          frame_id: "map",
+        },
+        pose: {
+          position: {
+            x: coordinates.x,
+            y: coordinates.y,
+            z: coordinates.z || 0.0,
+          },
+          orientation: {
+            x: 0.0,
+            y: 0.0,
+            z: coordinates.orientationZ,
+            w: coordinates.orientationW,
+          },
+        },
+      });
+
+      goalPublisher.publish(goalMessage);
+      console.log("Published goal pose:", goalMessage);
+    } else {
+      console.error("ROS is not connected or coordinates are missing for", room);
+    }
   };
 
-  // useEffect(() => {
-  //   const rosConnection = new ROSLIB.Ros({
-  //     url: "ws://localhost:9090",
-  //   });
+  useEffect(() => {
+    const rosConnection = new ROSLIB.Ros({
+      url: "ws://localhost:9090",
+    });
 
-  //   rosConnection.on("connection", () => {
-  //     console.log("Connected to ROS WebSocket server");
-  //     setIsConnected(true);
-  //   });
+    rosConnection.on("connection", () => {
+      console.log("Connected to ROS WebSocket server");
+      setIsConnected(true);
+    });
 
-  //   rosConnection.on("error", (error) => {
-  //     console.error("Error connecting to ROS WebSocket server:", error);
-  //     setIsConnected(false);
-  //   });
+    rosConnection.on("error", (error) => {
+      console.error("Error connecting to ROS WebSocket server:", error);
+      setIsConnected(false);
+    });
 
-  //   rosConnection.on("close", () => {
-  //     console.log("Connection to ROS WebSocket server closed");
-  //     setIsConnected(false);
-  //   });
+    rosConnection.on("close", () => {
+      console.log("Connection to ROS WebSocket server closed");
+      setIsConnected(false);
+    });
 
-  //   setRos(rosConnection);
+    setRos(rosConnection);
 
-  //   return () => {
-  //     if (rosConnection) {
-  //       rosConnection.close();
-  //     }
-  //   };
-  // }, []);
+    return () => {
+      if (rosConnection) {
+        rosConnection.close();
+      }
+    };
+  }, []);
 
   return (
     <div className="app">
         <h1 className="floor-title">Floor 4</h1>
-
 
       {Object.keys(roomCoordinates).length > 0 ? (
         <>
@@ -129,7 +166,6 @@ function Floor4() {
         </>
       ) : (
         <p>Loading room coordinates...</p>
-
       )}
       <button className="home-button" onClick={() => navigate("/")}>
         Home
