@@ -54,7 +54,7 @@
 /* Buttons */
 .choice-button {
   padding: 3vh 6vw;
-  font-size: clamp(1.5em, 3vw, 2em); 
+  font-size: 2.0em;
   width: clamp(250px, 35vw, 350px); 
   background-color: #ac2b37;
   color: white;
@@ -63,6 +63,7 @@
   cursor: pointer;
   transition: transform 0.2s ease, background-color 0.3s ease;
   text-align: center;
+  font-weight: bold;
 }
 
 /* Hover Effect */
@@ -74,7 +75,7 @@
 /* Caption */
 .caption {
   font-size: clamp(1.2em, 2.5vw, 2em);
-  font-style: italic;
+  /* font-style: ; */
   color: #080808;
 }
 
