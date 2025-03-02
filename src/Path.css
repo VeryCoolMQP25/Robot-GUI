@@ -29,22 +29,30 @@ h1 {
 }
 
 .exit-button {
-  font-size: 1.2em;
+  font-size: 2em;
   background-color: #dc3545;
   color: white;
   border: none;
   cursor: pointer;
   transition: transform 0.2s ease, background-color 0.3s ease;
-  margin-bottom: 20px; 
+  position: absolute;
+  top: 20px;
+  right: 80px;
+  padding: 15px 30px; 
+  border-radius: 12px; 
+  width: auto; 
 }
 
 .exit-button:hover {
   background-color: #b52a35;
-  transform: scale(1.05);
+  transform: scale(1.1); 
 }
+
 
 .left-heading {
   position: absolute;
-  left: 70px; 
-  bottom: 20px; 
+  left: 50%;
+  bottom: 20px;
+  transform: translateX(-50%); /* Centers the heading */
+  text-align: center;
 }
