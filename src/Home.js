@@ -66,34 +66,34 @@ function Home() {
     }
   };
 
-  useEffect(() => {
-    const rosConnection = new ROSLIB.Ros({
-      url: "ws://localhost:9090",
-    });
+  // useEffect(() => {
+  //   const rosConnection = new ROSLIB.Ros({
+  //     url: "ws://localhost:9090",
+  //   });
 
-    rosConnection.on("connection", () => {
-      console.log("Connected to ROS WebSocket server");
-      setIsConnected(true);
-    });
+  //   rosConnection.on("connection", () => {
+  //     console.log("Connected to ROS WebSocket server");
+  //     setIsConnected(true);
+  //   });
 
-    rosConnection.on("error", (error) => {
-      console.error("Error connecting to ROS WebSocket server:", error);
-      setIsConnected(false);
-    });
+  //   rosConnection.on("error", (error) => {
+  //     console.error("Error connecting to ROS WebSocket server:", error);
+  //     setIsConnected(false);
+  //   });
 
-    rosConnection.on("close", () => {
-      console.log("Connection to ROS WebSocket server closed");
-      setIsConnected(false);
-    });
+  //   rosConnection.on("close", () => {
+  //     console.log("Connection to ROS WebSocket server closed");
+  //     setIsConnected(false);
+  //   });
 
-    setRos(rosConnection);
+  //   setRos(rosConnection);
 
-    return () => {
-      if (rosConnection) {
-        rosConnection.close();
-      }
-    };
-  }, []);
+  //   return () => {
+  //     if (rosConnection) {
+  //       rosConnection.close();
+  //     }
+  //   };
+  // }, []);
 
   return (
     <div className="app">

@@ -17,7 +17,7 @@ function Path() {
 
     // Check if ROS connection is successful
     rosConnection.on("connection", () => {
-      console.log("Connected to ROS WebSocket server");
+      console.log("Connected to ROS WebSocket server (in Path js) ");
     });
 
     rosConnection.on("error", (error) => {
