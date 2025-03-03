@@ -9,8 +9,7 @@ import Floor4 from "./Floor4";
 import Floor5 from "./Floor5";  
 import DestinationInput from "./DestinationInput";
 import Path from "./Path";
-import Home from "./Home";
-import Speaker from "./Speaker";
+
 
 // using routes to navigate between pages
 function App() {
@@ -18,11 +17,10 @@ function App() {
     <Router>
       <Routes>
         <Route path="/" element={<Start />} />
-        <Route path="/home" element={<Home />} />
+        {/* <Route path="/home" element={<Home />} /> */}
         <Route path="/Path/:room" element={<Path />} /> 
         <Route path="/explore-unity" element={<ExploreUnity />} />
         <Route path="/destination-input" element={<DestinationInput />} />
-        <Route path="/speaker" element={<Speaker />} />
         <Route path="/floor1" element={<Floor1 />} />
         <Route path="/floor2" element={<Floor2 />} />
         <Route path="/floor3" element={<Floor3 />} />

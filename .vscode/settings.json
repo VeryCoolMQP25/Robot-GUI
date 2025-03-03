@@ -1,0 +1,36 @@
+{
+    "python.autoComplete.extraPaths": [
+        "/home/suki/ros2_ws/src/install/localization/lib/python3.10/site-packages",
+        "/home/suki/ros2_ws/src/install/odom_tf_convert/lib/python3.10/site-packages",
+        "/home/suki/ros2_ws/src/install/new_camera_setup/lib/python3.10/site-packages",
+        "/home/suki/ros2_ws/src/install/mqp_teleop/lib/python3.10/site-packages",
+        "/home/suki/ros2_ws/src/install/camera_ocr_package/lib/python3.10/site-packages",
+        "/home/suki/ros2_ws/build/odom_tf_convert",
+        "/home/suki/ros2_ws/install/odom_tf_convert/lib/python3.10/site-packages",
+        "/home/suki/ros2_ws/build/new_camera_setup",
+        "/home/suki/ros2_ws/install/new_camera_setup/lib/python3.10/site-packages",
+        "/home/suki/ros2_ws/build/mqp_teleop",
+        "/home/suki/ros2_ws/install/mqp_teleop/lib/python3.10/site-packages",
+        "/home/suki/ros2_ws/build/camera_ocr_package",
+        "/home/suki/ros2_ws/install/camera_ocr_package/lib/python3.10/site-packages",
+        "/opt/ros/humble/lib/python3.10/site-packages",
+        "/opt/ros/humble/local/lib/python3.10/dist-packages"
+    ],
+    "python.analysis.extraPaths": [
+        "/home/suki/ros2_ws/src/install/localization/lib/python3.10/site-packages",
+        "/home/suki/ros2_ws/src/install/odom_tf_convert/lib/python3.10/site-packages",
+        "/home/suki/ros2_ws/src/install/new_camera_setup/lib/python3.10/site-packages",
+        "/home/suki/ros2_ws/src/install/mqp_teleop/lib/python3.10/site-packages",
+        "/home/suki/ros2_ws/src/install/camera_ocr_package/lib/python3.10/site-packages",
+        "/home/suki/ros2_ws/build/odom_tf_convert",
+        "/home/suki/ros2_ws/install/odom_tf_convert/lib/python3.10/site-packages",
+        "/home/suki/ros2_ws/build/new_camera_setup",
+        "/home/suki/ros2_ws/install/new_camera_setup/lib/python3.10/site-packages",
+        "/home/suki/ros2_ws/build/mqp_teleop",
+        "/home/suki/ros2_ws/install/mqp_teleop/lib/python3.10/site-packages",
+        "/home/suki/ros2_ws/build/camera_ocr_package",
+        "/home/suki/ros2_ws/install/camera_ocr_package/lib/python3.10/site-packages",
+        "/opt/ros/humble/lib/python3.10/site-packages",
+        "/opt/ros/humble/local/lib/python3.10/dist-packages"
+    ]
+}

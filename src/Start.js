@@ -10,7 +10,6 @@ function Start() {
     const [roomNumber, setRoomNumber] = useState("");
     const [floorNumber, setFloorNumber] = useState("");
 
-
     useEffect(() => {
       // Only set up polling if we've initiated navigation
         if (statusMessage === "Please wait....." || statusMessage.includes("navigating")) {

@@ -17,7 +17,7 @@ function Floor2() {
       .then((data) => {
         console.log("Room coordinates loaded:", data);
         setRoomCoordinates(data);
-  
+
         if (data.floor_2) {
           const allRooms = Object.keys(data.floor_2);
           setFloor2Rooms(allRooms);
@@ -30,10 +30,6 @@ function Floor2() {
         setRoomCoordinates({});
       });
   }, []);
-      
-  const handleNavigation = (room) => {
-    navigate(`/Path/${room}`);
-  };
 
   useEffect(() => {
     const rosConnection = new ROSLIB.Ros({
@@ -43,6 +39,7 @@ function Floor2() {
     rosConnection.on("connection", () => {
       console.log("Connected to ROS WebSocket server");
       setIsConnected(true);
+      setRos(rosConnection);
     });
 
     rosConnection.on("error", (error) => {
@@ -55,8 +52,6 @@ function Floor2() {
       setIsConnected(false);
     });
 
-    setRos(rosConnection);
-
     return () => {
       if (rosConnection) {
         rosConnection.close();
@@ -64,10 +59,52 @@ function Floor2() {
     };
   }, []);
 
+  const handleNavigation = (room) => {
+    navigate(`/Path/${room}`);
+
+    if (ros && isConnected && roomCoordinates.floor_2[room]) {
+      const goalPublisher = new ROSLIB.Topic({
+        ros: ros,
+        name: "/goal_pose",
+        messageType: "geometry_msgs/PoseStamped",
+      });
+
+      const currentTime = new Date();
+      const coordinates = roomCoordinates.floor_2[room];
+
+      const goalMessage = new ROSLIB.Message({
+        header: {
+          stamp: {
+            sec: Math.floor(currentTime.getTime() / 1000),
+            nanosec: (currentTime.getTime() % 1000) * 1e6,
+          },
+          frame_id: "map",
+        },
+        pose: {
+          position: {
+            x: coordinates.x,
+            y: coordinates.y,
+            z: coordinates.z || 0.0,
+          },
+          orientation: {
+            x: 0.0,
+            y: 0.0,
+            z: coordinates.orientationZ,
+            w: coordinates.orientationW,
+          },
+        },
+      });
+
+      goalPublisher.publish(goalMessage);
+      console.log("Published goal pose:", goalMessage);
+    } else {
+      console.error("ROS is not connected or coordinates are missing for", room);
+    }
+  };
+
   return (
     <div className="app">
       <h1 className="floor-title">Floor 2</h1>
-
       {Object.keys(roomCoordinates).length > 0 ? (
         <>
           <div className="section classrooms-row">
