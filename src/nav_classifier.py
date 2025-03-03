@@ -71,15 +71,7 @@ class RoomClassifier:
         room_number = room_numbers[0]
         floor_number = room_number[0]
         
-        floor_mapping = {
-            '1': '1',
-            '2': '2',
-            '3': '3',
-            '4': '4',
-            '5': '5'
-        }
-        
-        return room_number, floor_mapping.get(floor_number)
+        return room_number, floor_number
 
     def preprocess_text(self, text):
         text = text.lower()
@@ -226,7 +218,7 @@ class RoomClassifier:
         
 if __name__ == "__main__":
     classifier = RoomClassifier()
-    # text = {'room': 'room', 'room_number': '300', 'floor': 'third'}
+    # text = {'room': 'room', 'room_number': '300', 'floor': '3'}
     # test = classifier.json()
 
 
@@ -238,11 +230,11 @@ if __name__ == "__main__":
         # "Navigate to the curtain area",  #will automatically use second floor 
         # "Navigate to the restrooms", #unknown floor 
         # "Can you show me where room 156 is?",
-        "Navigate to unity 100.", 
+        "Navigate to unity 500.", #buggy, need to rdebug 5th floor 
         # "Take me to tech suite 316 please.", 
         # "Take me to blah blah blah", #doesn't exist 
         "Take me to the pear lab on the second floor", 
-        "Take me to the stairs on the second floor"
+        "Take me to the stairs on the fifth floor"
         # "Take me to room 301"
     ]
     

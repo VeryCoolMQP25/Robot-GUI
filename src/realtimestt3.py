@@ -11,6 +11,7 @@ from navigation_stack import NavigationNode
 import rclpy
 import asyncio
 import websockets
+import json
 
 classifier = RoomClassifier()
 llm = LLM_RAG()
@@ -26,7 +27,7 @@ def clean_text(text):
 def wake_word(text):
     if text:
         cleaned_text = clean_text(text)
-        if "hey tori" in cleaned_text or "hey tory" in cleaned_text or "hey torry" in cleaned_text:
+        if "hey tori" in cleaned_text or "hey tory" in cleaned_text or "hey torry" in cleaned_text or "hitori" in cleaned_text:
             engine.say("Hi, I'm Tori, a tour guide robot in Unity Hall. Would you like to say a navigation command or ask me a question?")
             engine.runAndWait()
             time.sleep(7)
@@ -116,48 +117,54 @@ def main():
     
     try:
         while True:
-            print("Listening for the wake phrase...")
-            engine.say("Please say a wake word when you are ready")
-            engine.runAndWait()
-            time.sleep(1)
+            # print("Listening for the wake phrase...")
+            # engine.say("Please say a wake word when you are ready")
+            # engine.runAndWait()
+            # time.sleep(1)
             
-            while True:  # wake word loop
-                text = recorder.text()
-                if exit(text):
-                    return
-                if wake_word(text):
-                    break
-            
-            while True: # command loop 
-                text = recorder.text()
-                if exit(text):
-                    return
-                if text:
-                    cleaned_text = clean_text(text)
-                    if "navigation" in cleaned_text:
-                        nav_result, room_num, floor = handle_navigation(recorder, classifier)
-                        if exit(text):
-                            return
-                        if nav_result:  # successful navigation 
-                            print(floor)
-                            print(room_num)
-                            rclpy.init() # have to call this here otherwise the script doesn't work right 
-                            nav_stack = NavigationNode() #^
-                            nav_stack.navigate(room_num, floor)
-                            classifier.reset_context()  # reset context after navigation
-                            return
-                        if not nav_result:  # restart after 3 attempts
-                            break 
-                    elif "question" in cleaned_text:
-                        question(recorder)
+            # while True:  # wake word loop
+            text = recorder.text()
+            if exit(text):
+                return
+            if wake_word(text):
+                break
+        
+        while True: # command loop 
+            text = recorder.text()
+            if exit(text):
+                return
+            if text:
+                cleaned_text = clean_text(text)
+                if "navigation" in cleaned_text:
+                    nav_result, room_num, floor = handle_navigation(recorder, classifier)
+                    if exit(text):
                         return
-                time.sleep(1)
+                    if nav_result:  # successful navigation 
+                        print(floor)
+                        print(room_num)
+                        rclpy.init() # have to call this here otherwise the script doesn't work right 
+                        nav_stack = NavigationNode() #^
+                        with open('current_navigation.json', 'w') as f:
+                            json.dump({"room": room_num, "floor": floor, "timestamp": time.time()}, f)
+                        nav_stack.navigate(room_num, floor)
+                        classifier.reset_context()  # reset context after navigation
+                        return
+                    if not nav_result:  # restart after 3 attempts
+                        break 
+                elif "question" in cleaned_text:
+                    question(recorder)
+                    return
+            time.sleep(1)
 
     except KeyboardInterrupt:
         print("Keyboard Interrupt")
 
 if __name__ == "__main__":
     main()
+    # room_num = "UH400"
+    # floor = "4"
     # rclpy.init() # have to call this here otherwise the script doesn't work right 
     # nav_stack = NavigationNode() #^
-    # nav_stack.navigate("UH400", "4") 
+    # with open('current_navigation.json', 'w') as f:
+    #     json.dump({"room": room_num, "floor": floor, "timestamp": time.time()}, f)
+    # nav_stack.navigate(room_num, floor) 

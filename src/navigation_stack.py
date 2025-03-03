@@ -129,8 +129,8 @@ class NavigationNode(Node):
                 current_time = self.get_clock().now()
                 goal_msg.header.stamp = current_time.to_msg()
                 goal_msg.header.frame_id = "map"
-                goal_msg.pose.position = Point(x=coordinates["x"], y=coordinates["y"], z=coordinates["z"])
-                goal_msg.pose.orientation = Quaternion(x=0.0, y=0.0, z=coordinates["orientationZ"], w=coordinates["orientationW"])
+                goal_msg.pose.position = Point(x=float(coordinates["x"]), y=float(coordinates["y"]), z=float(coordinates["z"]))
+                goal_msg.pose.orientation = Quaternion(x=float(0.0), y=float(0.0), z=float(coordinates["orientationZ"]), w=float(coordinates["orientationW"]))
                 self.goal_publisher.publish(goal_msg)
                 
                 self.get_logger().info(f"Navigating to {room_number} on floor {floor_number}. Goal published.")
