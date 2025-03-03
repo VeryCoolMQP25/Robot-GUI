@@ -150,8 +150,8 @@ class RoomClassifier:
         room_key = text['room_number']
         if room_key is None: 
             room_key = text['room']
-        # print(floor_key)
-        # print(room_key)
+        print(floor_key)
+        print(room_key)
 
         if floor_key in json_data:
             print(f"{floor_key} exists in JS data")
@@ -171,14 +171,28 @@ class RoomClassifier:
         self.update_context(new_info)
         combined_text = self.get_combined_text(text)        
         info = self.extract_location_info(combined_text)
+        print(info)
         json = self.json(info)
         print(f"flag: {json}")
-
+        
         if info['room_number']: 
             if json == 1: 
                 return {
                     'success': True,
                     'message': f"I'll take you to room {info['room_number']} on floor number {info['floor']}.",
+                    'missing': None
+                }
+            else: 
+                return{
+                    'success': False,
+                    'message': "That room does not exist. Please try again.",
+                    'missing': 'both'
+                }
+        if info['room']: 
+            if json == 1: 
+                return {
+                    'success': True,
+                    'message': f"I'll take you to room {info['room']} on floor number {info['floor']}.",
                     'missing': None
                 }
             else: 

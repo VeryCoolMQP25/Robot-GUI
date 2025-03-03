@@ -1,9 +1,28 @@
-import React from "react";
+// import React from "react";
 import { useNavigate } from "react-router-dom";
 import "./Start.css";
+import axios from 'axios';
+import React, { useState, useEffect } from 'react';
 
 function Start() {
   const navigate = useNavigate();
+  const [statusMessage, setStatusMessage] = useState("");
+  const [output, setOutput] = useState("");
+
+  const speaker = () => {
+    setStatusMessage("Please wait.....");
+    axios.get('http://127.0.0.1:5000/api/run-script')  // Send GET request to backend
+      .then(response => {
+        console.log("Response from Flask:", response);
+        setStatusMessage(response.data.message);  // Update the status message
+        setOutput(response.data.output);  // Output from the Python script
+      })
+      .catch(error => {
+        console.error("Error:", error);
+        setStatusMessage("Error running the script.");
+        setOutput(error.message);
+      });
+  };
 
   return (
     <div className="start-page">
@@ -26,7 +45,7 @@ function Start() {
         </div>
 
         <div className="option">
-          <button className="choice-button" onClick={() => navigate("/speaker")}>
+          <button className="choice-button" onClick={speaker}>
             Speaker
           </button>
         </div>
