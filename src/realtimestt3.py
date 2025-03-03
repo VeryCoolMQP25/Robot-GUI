@@ -158,3 +158,6 @@ def main():
 
 if __name__ == "__main__":
     main()
+    # rclpy.init() # have to call this here otherwise the script doesn't work right 
+    # nav_stack = NavigationNode() #^
+    # nav_stack.navigate("UH400", "4") 
