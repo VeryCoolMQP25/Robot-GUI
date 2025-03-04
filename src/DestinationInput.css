@@ -1,4 +1,4 @@
-/* Full-page container to center the dialog */
+/* Full-page container to center dialog */
 .destination-container {
   display: flex;
   align-items: center;
@@ -10,7 +10,7 @@
   box-sizing: border-box;
 }
 
-/* Dialog box with a responsive width */
+/* Dialog box with responsive width */
 .dialog-box {
   background: white;
   padding: 30px;
@@ -56,7 +56,6 @@
   font-family: 'Roboto', Arial, sans-serif;
 }
 
-/* Submit button specific styles */
 .submit-button {
   background-color: #ac2b37;
   color: white;
@@ -78,14 +77,28 @@
   transform: scale(1.07);
 }
 
-/* Improve input focus */
 .destination-input:focus {
   outline: none;
   border-color: #8c222c;
   box-shadow: 0 0 7px rgba(172, 43, 55, 0.6);
 }
 
-/* Ensures everything scales well on smaller screens */
+/* Footer */
+.footer {
+  width: 100%;
+  display: flex;
+  justify-content: left;
+  align-items: left;
+  padding: 3vh 3vw;
+  position: absolute;
+  bottom: 0;
+}
+
+.wpi-logo {
+  max-width: clamp(200px, 25vw, 250px); 
+  height: auto;
+}
+
 @media (max-width: 480px) {
   .dialog-box {
     padding: 20px;
