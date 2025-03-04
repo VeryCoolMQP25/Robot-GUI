@@ -1,12 +1,12 @@
-import ROSLIB from "roslib";
-import { useNavigate } from "react-router-dom";
 import React, { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
+import { useRos } from "./RosContext"; 
+import ROSLIB from "roslib";
 import "./App.css";
 
 function Floor5() {
   const navigate = useNavigate();
-  const [ros, setRos] = useState(null);
-  const [isConnected, setIsConnected] = useState(false);
+  const { ros, isConnected } = useRos(); // Get the ROS connection from context
   const [roomCoordinates, setRoomCoordinates] = useState({});
   const [floor5Rooms, setFloor5Rooms] = useState([]);
 
@@ -34,7 +34,7 @@ function Floor5() {
   const handleNavigation = (room) => {
     navigate(`/Path/${room}`);
 
-    if (ros && isConnected && roomCoordinates.floor_5[room]) { // Updated to use floor_5
+    if (ros && isConnected && roomCoordinates.floor_5[room]) { 
       const goalPublisher = new ROSLIB.Topic({
         ros: ros,
         name: "/goal_pose",
@@ -73,35 +73,6 @@ function Floor5() {
       console.error("ROS is not connected or coordinates are missing for", room);
     }
   };
-
-  useEffect(() => {
-    const rosConnection = new ROSLIB.Ros({
-      url: "ws://localhost:9090",
-    });
-
-    rosConnection.on("connection", () => {
-      console.log("Connected to ROS WebSocket server");
-      setIsConnected(true);
-    });
-
-    rosConnection.on("error", (error) => {
-      console.error("Error connecting to ROS WebSocket server:", error);
-      setIsConnected(false);
-    });
-
-    rosConnection.on("close", () => {
-      console.log("Connection to ROS WebSocket server closed");
-      setIsConnected(false);
-    });
-
-    setRos(rosConnection);
-
-    return () => {
-      if (rosConnection) {
-        rosConnection.close();
-      }
-    };
-  }, []);
 
   return (
     <div className="app">

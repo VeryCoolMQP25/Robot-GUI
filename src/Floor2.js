@@ -1,12 +1,12 @@
-import ROSLIB from "roslib";
-import { useNavigate } from "react-router-dom";
 import React, { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
+import ROSLIB from "roslib";
+import { useRos } from "./RosContext"; // Use the custom hook
 import "./App.css";
 
 function Floor2() {
   const navigate = useNavigate();
-  const [ros, setRos] = useState(null);
-  const [isConnected, setIsConnected] = useState(false);
+  const { ros, isConnected } = useRos(); // Get the ROS connection from context
   const [roomCoordinates, setRoomCoordinates] = useState({});
   const [floor2Rooms, setFloor2Rooms] = useState([]);
 
@@ -31,37 +31,10 @@ function Floor2() {
       });
   }, []);
 
-  useEffect(() => {
-    const rosConnection = new ROSLIB.Ros({
-      url: "ws://localhost:9090",
-    });
-
-    rosConnection.on("connection", () => {
-      console.log("Connected to ROS WebSocket server");
-      setIsConnected(true);
-      setRos(rosConnection);
-    });
-
-    rosConnection.on("error", (error) => {
-      console.error("Error connecting to ROS WebSocket server:", error);
-      setIsConnected(false);
-    });
-
-    rosConnection.on("close", () => {
-      console.log("Connection to ROS WebSocket server closed");
-      setIsConnected(false);
-    });
-
-    return () => {
-      if (rosConnection) {
-        rosConnection.close();
-      }
-    };
-  }, []);
 
   const handleNavigation = (room) => {
     navigate(`/Path/${room}`);
-
+    
     if (ros && isConnected && roomCoordinates.floor_2[room]) {
       const goalPublisher = new ROSLIB.Topic({
         ros: ros,
@@ -70,7 +43,7 @@ function Floor2() {
       });
 
       const currentTime = new Date();
-      const coordinates = roomCoordinates.floor_2[room];
+      const coordinates = roomCoordinates.floor_2[room]; 
 
       const goalMessage = new ROSLIB.Message({
         header: {
@@ -101,6 +74,7 @@ function Floor2() {
       console.error("ROS is not connected or coordinates are missing for", room);
     }
   };
+
 
   return (
     <div className="app">
