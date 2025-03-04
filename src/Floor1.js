@@ -91,7 +91,7 @@ function Floor1() {
             </div>
           </div>
 
-          <div className="section study-areas-row">
+          {/* <div className="section study-areas-row">
             <p className="section-title">Study Areas</p>
             <div className="floor-map">
               {["Tech_Suites", "Study_Area"].map((room) => (
@@ -100,7 +100,7 @@ function Floor1() {
                 </div>
               ))}
             </div>
-          </div>
+          </div> */}
 
           <div className="section another-floor-row">
             <p className="section-title">Another Floor</p>
