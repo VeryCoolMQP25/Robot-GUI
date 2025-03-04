@@ -17,7 +17,6 @@ function App() {
     <Router>
       <Routes>
         <Route path="/" element={<Start />} />
-        {/* <Route path="/home" element={<Home />} /> */}
         <Route path="/Path/:room" element={<Path />} /> 
         <Route path="/explore-unity" element={<ExploreUnity />} />
         <Route path="/destination-input" element={<DestinationInput />} />

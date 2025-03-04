@@ -1,12 +1,12 @@
-import ROSLIB from "roslib";
+import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import React, { useState, useEffect } from "react";
+import { useRos } from "./RosContext"; // Import the RosContext hook
+import ROSLIB from "roslib";
 import "./App.css";
 
 function Floor1() {
   const navigate = useNavigate();
-  const [ros, setRos] = useState(null);
-  const [isConnected, setIsConnected] = useState(false);
+  const { ros, isConnected } = useRos(); // Use the shared ROS connection
   const [roomCoordinates, setRoomCoordinates] = useState({});
   const [floor1Rooms, setFloor1Rooms] = useState([]);
 
@@ -17,10 +17,9 @@ function Floor1() {
       .then((data) => {
         console.log("Room coordinates loaded:", data);
         setRoomCoordinates(data);
-  
+
         if (data.floor_1) {
-          const allRooms = Object.keys(data.floor_1);
-          setFloor1Rooms(allRooms);
+          setFloor1Rooms(Object.keys(data.floor_1));
         } else {
           console.error("Floor 1 data missing in JSON");
         }
@@ -31,37 +30,9 @@ function Floor1() {
       });
   }, []);
 
-  useEffect(() => {
-    const rosConnection = new ROSLIB.Ros({
-      url: "ws://localhost:9090",
-    });
-
-    rosConnection.on("connection", () => {
-      console.log("Connected to ROS WebSocket server");
-      setIsConnected(true);
-      setRos(rosConnection);
-    });
-
-    rosConnection.on("error", (error) => {
-      console.error("Error connecting to ROS WebSocket server:", error);
-      setIsConnected(false);
-    });
-
-    rosConnection.on("close", () => {
-      console.log("Connection to ROS WebSocket server closed");
-      setIsConnected(false);
-    });
-
-    return () => {
-      if (rosConnection) {
-        rosConnection.close();
-      }
-    };
-  }, []);
-      
   const handleNavigation = (room) => {
     navigate(`/Path/${room}`);
-    
+
     if (ros && isConnected && roomCoordinates.floor_1[room]) {
       const goalPublisher = new ROSLIB.Topic({
         ros: ros,
@@ -71,7 +42,7 @@ function Floor1() {
 
       const currentTime = new Date();
       const coordinates = roomCoordinates.floor_1[room];
-      
+
       const goalMessage = new ROSLIB.Message({
         header: {
           stamp: {
