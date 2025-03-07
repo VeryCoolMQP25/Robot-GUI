@@ -1,0 +1,3 @@
+[submodule "verbal_command_system"]
+	path = verbal_command_system
+	url = https://github.com/VeryCoolMQP25/verbal_command_system.git
