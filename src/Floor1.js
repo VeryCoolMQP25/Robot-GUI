@@ -36,7 +36,7 @@ function Floor1() {
     if (ros && isConnected && roomCoordinates.floor_1[room]) {
       const goalPublisher = new ROSLIB.Topic({
         ros: ros,
-        name: "/goal_pose",
+        name: "/filtered_goal_pose",
         messageType: "geometry_msgs/PoseStamped",
       });
 
