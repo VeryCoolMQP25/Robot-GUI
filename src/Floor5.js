@@ -34,7 +34,19 @@ function Floor5() {
   const handleNavigation = (room) => {
     navigate(`/Path/${room}`);
 
-    if (ros && isConnected && roomCoordinates.floor_5[room]) { 
+    if (ros && isConnected && roomCoordinates.floor_5[room]) {
+      
+      // Publisher for current floor
+      const floorPublisher = new ROSLIB.Topic({
+        ros: ros,
+        name: "/requested_floor",
+        messageType: "std_msgs/Int32",
+      });
+
+      const floorMessage = new ROSLIB.Message({ data: 5 });
+      floorPublisher.publish(floorMessage);
+      console.log("Published requested floor:", floorMessage);
+      
       const goalPublisher = new ROSLIB.Topic({
         ros: ros,
         name: "/filtered_goal_pose",
@@ -96,7 +108,7 @@ function Floor5() {
           <div className="section study-areas-row">
             <p className="section-title">Study Areas</p>
             <div className="floor-map">
-              {["Tech_Suites", "Study_Area"].map((room) => (
+              {["Study_Area"].map((room) => (
                 <div
                   key={room}
                   onClick={() => handleNavigation(room)}
