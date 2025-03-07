@@ -1,12 +1,12 @@
-import ROSLIB from "roslib";
-import { useNavigate } from "react-router-dom";
 import React, { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
+import ROSLIB from "roslib";
+import { useRos } from "./RosContext"; // Use the custom hook
 import "./App.css";
 
 function Floor3() {
   const navigate = useNavigate();
-  const [ros, setRos] = useState(null);
-  const [isConnected, setIsConnected] = useState(false);
+  const { ros, isConnected } = useRos(); // Get the ROS connection from context
   const [roomCoordinates, setRoomCoordinates] = useState({});
   const [floor3Rooms, setFloor3Rooms] = useState([]);
 
@@ -19,8 +19,8 @@ function Floor3() {
         setRoomCoordinates(data);
 
         if (data.floor_3) {
-          const allRooms = Object.keys(data.floor_3); // Get all room names for Floor 3
-          setFloor3Rooms(allRooms); // Store all rooms
+          const allRooms = Object.keys(data.floor_3);
+          setFloor3Rooms(allRooms);
         } else {
           console.error("Floor 3 data missing in JSON");
         }
@@ -42,7 +42,7 @@ function Floor3() {
       });
 
       const currentTime = new Date();
-      const coordinates = roomCoordinates.floor_3[room]; // Updated to use floor_3
+      const coordinates = roomCoordinates.floor_3[room]; 
 
       const goalMessage = new ROSLIB.Message({
         header: {
@@ -74,35 +74,6 @@ function Floor3() {
     }
   };
 
-  useEffect(() => {
-    const rosConnection = new ROSLIB.Ros({
-      url: "ws://localhost:9090",
-    });
-
-    rosConnection.on("connection", () => {
-      console.log("Connected to ROS WebSocket server");
-      setIsConnected(true);
-    });
-
-    rosConnection.on("error", (error) => {
-      console.error("Error connecting to ROS WebSocket server:", error);
-      setIsConnected(false);
-    });
-
-    rosConnection.on("close", () => {
-      console.log("Connection to ROS WebSocket server closed");
-      setIsConnected(false);
-    });
-
-    setRos(rosConnection);
-
-    return () => {
-      if (rosConnection) {
-        rosConnection.close();
-      }
-    };
-  }, []);
-
   return (
     <div className="app">
       <h1 className="floor-title">Floor 3</h1>
@@ -113,7 +84,7 @@ function Floor3() {
             <p className="section-title">Classrooms</p>
             <div className="floor-map">
               {floor3Rooms
-                .filter((room) => room.startsWith("UH")) // Selects only rooms that start with "UH"
+                .filter((room) => room.startsWith("UH"))
                 .map((room) => (
                   <div key={room} onClick={() => handleNavigation(room)} className="room">
                     {room}
@@ -126,11 +97,7 @@ function Floor3() {
             <p className="section-title">Study Areas</p>
             <div className="floor-map">
               {["Tech_Suites", "Study_Area"].map((room) => (
-                <div
-                  key={room}
-                  onClick={() => handleNavigation(room)}
-                  className="room"
-                >
+                <div key={room} onClick={() => handleNavigation(room)} className="room">
                   {room.replace("_", " ")}
                 </div>
               ))}
@@ -141,11 +108,7 @@ function Floor3() {
             <p className="section-title">Another Floor</p>
             <div className="floor-map">
               {["Stairs", "Elevator"].map((room) => (
-                <div
-                  key={room}
-                  onClick={() => handleNavigation(room)}
-                  className="room"
-                >
+                <div key={room} onClick={() => handleNavigation(room)} className="room">
                   {room}
                 </div>
               ))}
@@ -155,10 +118,7 @@ function Floor3() {
           <div className="section restrooms-row">
             <p className="section-title">Restrooms</p>
             <div className="floor-map">
-              <div
-                onClick={() => handleNavigation("Restrooms")}
-                className="room restrooms-room"
-              >
+              <div onClick={() => handleNavigation("Restrooms")} className="room restrooms-room">
                 Restrooms
               </div>
             </div>

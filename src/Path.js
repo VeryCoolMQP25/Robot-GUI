@@ -1,45 +1,44 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import ROSLIB from "roslib";
+import { useRos } from "./RosContext"; // Use the custom hook
 import "./Path.css";
 import faceImage from "./face.jpg";
+import followMeAudio from "./follow.mp3";
 
 function Path() {
-  const { room } = useParams(); // Get room number from URL
+  const { room } = useParams();
   const navigate = useNavigate();
-  const [ros, setRos] = useState(null);
+  const { ros, isConnected } = useRos(); // Get the ROS connection from context
+  const audioRef = useRef(null); // Store the audio instance
 
   useEffect(() => {
-    // Set up connection to ROS WebSocket server
-    const rosConnection = new ROSLIB.Ros({
-      url: "ws://localhost:9090", // WebSocket URL of ROS bridge thing
-    });
-
-    // Check if ROS connection is successful
-    rosConnection.on("connection", () => {
-      console.log("Connected to ROS WebSocket server (in Path js) ");
-    });
-
-    rosConnection.on("error", (error) => {
-      console.error("Error connecting to ROS WebSocket server:", error);
-    });
-
-    rosConnection.on("close", () => {
-      console.log("Connection to ROS WebSocket server closed");
-    });
-
-    setRos(rosConnection); // Set ROS connection
+    // Create the audio object and play it
+    const audio = new Audio(followMeAudio);
+    audioRef.current = audio;
+    
+    audio.play().catch((error) => console.error("Autoplay blocked:", error));
 
     return () => {
-      if (rosConnection) {
-        rosConnection.close();
+      if (audioRef.current) {
+        audioRef.current.pause();
+        audioRef.current.currentTime = 0;
       }
     };
   }, []);
 
+  const stopAudio = () => {
+    if (audioRef.current) {
+      audioRef.current.pause();
+      audioRef.current.currentTime = 0;
+      console.log("Audio stopped");
+    }
+  };
+
   const handleExit = () => {
-    // Check if ros is initialized
-    if (ros) {
+    stopAudio(); // Stop the audio when the button is clicked
+
+    if (ros && isConnected) {
       const roomPublisher = new ROSLIB.Topic({
         ros: ros,
         name: "/room",
@@ -53,23 +52,20 @@ function Path() {
       roomPublisher.publish(stopMessage);
       console.log("Published stop message to /room topic");
     } else {
-      console.error("ROS connection not initialized.");
+      console.error("ROS connection not initialized or disconnected.");
     }
 
-    navigate("/"); // Navigate back to home page
+    navigate("/");
   };
 
-  const pathStyle = {
-    backgroundImage: `url(${faceImage})`,
-    backgroundSize: "cover",
-    backgroundPosition: "center",
-    height: "100vh",
-    width: "100vw"
-  };
-  
-  
   return (
-    <div className="path-page" style ={pathStyle}>
+    <div className="path-page" style={{ 
+      backgroundImage: `url(${faceImage})`, 
+      backgroundSize: "cover", 
+      backgroundPosition: "center", 
+      height: "100vh", 
+      width: "100vw" 
+    }}>
       <h1 className="left-heading">Follow Me!</h1>
       <button onClick={handleExit} className="exit-button">
         Exit

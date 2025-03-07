@@ -80,6 +80,12 @@ function DestinationInput() {
         <button onClick={handleSubmit} className="submit-button">Submit</button>
         <button onClick={() => navigate("/")} className="home-button">Home</button>
       </div>
+
+      {/* Footer container for logo */}
+      <div className="footer">
+        <img src="/WPI_logo.png" alt="WPI Logo" className="wpi-logo" />
+      </div>
+
     </div>
   );
 }

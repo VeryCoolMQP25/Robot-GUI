@@ -1,12 +1,12 @@
-import ROSLIB from "roslib";
-import { useNavigate } from "react-router-dom";
 import React, { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
+import ROSLIB from "roslib";
+import { useRos } from "./RosContext"; // Use the custom hook
 import "./App.css";
 
 function Floor4() {
   const navigate = useNavigate();
-  const [ros, setRos] = useState(null);
-  const [isConnected, setIsConnected] = useState(false);
+  const { ros, isConnected } = useRos(); // Get the ROS connection from context
   const [roomCoordinates, setRoomCoordinates] = useState({});
   const [floor4Rooms, setFloor4Rooms] = useState([]);
 
@@ -17,10 +17,10 @@ function Floor4() {
       .then((data) => {
         console.log("Room coordinates loaded:", data);
         setRoomCoordinates(data);
-  
+
         if (data.floor_4) {
-          const allRooms = Object.keys(data.floor_4); // Get all room names for floor 4
-          setFloor4Rooms(allRooms); // Store all rooms for floor 4
+          const allRooms = Object.keys(data.floor_4);
+          setFloor4Rooms(allRooms);
         } else {
           console.error("Floor 4 data missing in JSON");
         }
@@ -42,8 +42,8 @@ function Floor4() {
       });
 
       const currentTime = new Date();
-      const coordinates = roomCoordinates.floor_4[room];
-      
+      const coordinates = roomCoordinates.floor_4[room]; 
+
       const goalMessage = new ROSLIB.Message({
         header: {
           stamp: {
@@ -74,38 +74,9 @@ function Floor4() {
     }
   };
 
-  useEffect(() => {
-    const rosConnection = new ROSLIB.Ros({
-      url: "ws://localhost:9090",
-    });
-
-    rosConnection.on("connection", () => {
-      console.log("Connected to ROS WebSocket server");
-      setIsConnected(true);
-    });
-
-    rosConnection.on("error", (error) => {
-      console.error("Error connecting to ROS WebSocket server:", error);
-      setIsConnected(false);
-    });
-
-    rosConnection.on("close", () => {
-      console.log("Connection to ROS WebSocket server closed");
-      setIsConnected(false);
-    });
-
-    setRos(rosConnection);
-
-    return () => {
-      if (rosConnection) {
-        rosConnection.close();
-      }
-    };
-  }, []);
-
   return (
     <div className="app">
-        <h1 className="floor-title">Floor 4</h1>
+      <h1 className="floor-title">Floor 4</h1>
 
       {Object.keys(roomCoordinates).length > 0 ? (
         <>
@@ -113,7 +84,7 @@ function Floor4() {
             <p className="section-title">Classrooms</p>
             <div className="floor-map">
               {floor4Rooms
-                .filter((room) => room.startsWith("UH")) // Selects only rooms that start with "UH"
+                .filter((room) => room.startsWith("UH"))
                 .map((room) => (
                   <div key={room} onClick={() => handleNavigation(room)} className="room">
                     {room}
@@ -126,11 +97,7 @@ function Floor4() {
             <p className="section-title">Study Areas</p>
             <div className="floor-map">
               {["Tech_Suites", "Study_Area"].map((room) => (
-                <div
-                  key={room}
-                  onClick={() => handleNavigation(room)}
-                  className="room"
-                >
+                <div key={room} onClick={() => handleNavigation(room)} className="room">
                   {room.replace("_", " ")}
                 </div>
               ))}
@@ -141,11 +108,7 @@ function Floor4() {
             <p className="section-title">Another Floor</p>
             <div className="floor-map">
               {["Stairs", "Elevator"].map((room) => (
-                <div
-                  key={room}
-                  onClick={() => handleNavigation(room)}
-                  className="room"
-                >
+                <div key={room} onClick={() => handleNavigation(room)} className="room">
                   {room}
                 </div>
               ))}
@@ -155,10 +118,7 @@ function Floor4() {
           <div className="section restrooms-row">
             <p className="section-title">Restrooms</p>
             <div className="floor-map">
-              <div
-                onClick={() => handleNavigation("Restrooms")}
-                className="room restrooms-room"
-              >
+              <div onClick={() => handleNavigation("Restrooms")} className="room restrooms-room">
                 Restrooms
               </div>
             </div>
@@ -167,9 +127,7 @@ function Floor4() {
       ) : (
         <p>Loading room coordinates...</p>
       )}
-      <button className="home-button" onClick={() => navigate("/")}>
-        Home
-      </button>
+      <button className="home-button" onClick={() => navigate("/")}>Home</button>
     </div>
   );
 }

@@ -46,7 +46,7 @@ p {
   width: 100%;
   overflow-x: auto; /* Enable horizontal scrolling */
   overflow-y:auto;
-  padding-bottom: 20px; /* Add space at the bottom for scrolling */
+  padding-bottom: 20px; 
 }
 
 
@@ -171,7 +171,7 @@ p {
 }
 
 .home-button {
-  background-color: #28a745; /* Green color for the home button */
+  background-color: #28a745; 
   color: white;
   font-size: 1.5em;
   font-weight: bold;
@@ -180,15 +180,14 @@ p {
   border-radius: 12px;
   cursor: pointer;
   transition: transform 0.2s ease, background-color 0.3s ease;
-  margin-top: 30px; /* Add margin to give it space from other elements */
+  margin-top: 30px; 
 }
 
 .home-button:hover {
-  background-color: #218838; /* Darker green when hovered */
-  transform: scale(1.05); /* Slight zoom effect */
+  background-color: #218838; 
+  transform: scale(1.05); /* zoom effect for funsies */
 }
 
-/* Add some spacing for responsiveness */
 @media (max-width: 768px) {
   .home-button {
     font-size: 1.2em;

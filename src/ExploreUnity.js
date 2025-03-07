@@ -24,6 +24,11 @@ function ExploreUnity() {
         <button className="floor-choice-button" onClick={() => navigate("/floor4")}>Floor 4</button>
         <button className="floor-choice-button" onClick={() => navigate("/floor5")}>Floor 5</button>
       </div>
+      {/* Footer container for logo */}
+      <div className="footer">
+        <img src="/WPI_logo.png" alt="WPI Logo" className="wpi-logo" />
+      </div>
+
     </div>
   );
 }

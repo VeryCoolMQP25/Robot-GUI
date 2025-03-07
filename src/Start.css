@@ -11,6 +11,7 @@
   box-sizing: border-box;
   position: relative;
   z-index: 1;
+  overflow: hidden;
 }
 
 /* Dynamic Background Image */
@@ -90,7 +91,6 @@
   bottom: 0;
 }
 
-/* Larger, Dynamic Logo */
 .wpi-logo {
   max-width: clamp(200px, 25vw, 250px); 
   height: auto;
