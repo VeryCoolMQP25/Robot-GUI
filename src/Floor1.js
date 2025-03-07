@@ -34,6 +34,18 @@ function Floor1() {
     navigate(`/Path/${room}`);
 
     if (ros && isConnected && roomCoordinates.floor_1[room]) {
+
+      // Publisher for current floor
+      const floorPublisher = new ROSLIB.Topic({
+        ros: ros,
+        name: "/requested_floor",
+        messageType: "std_msgs/Int32",
+      });
+
+      const floorMessage = new ROSLIB.Message({ data: 1 });
+      floorPublisher.publish(floorMessage);
+      console.log("Published requested floor:", floorMessage);
+      
       const goalPublisher = new ROSLIB.Topic({
         ros: ros,
         name: "/filtered_goal_pose",
