@@ -61,7 +61,11 @@ function Start() {
               setStatusMessage("Error running the script.");
               setOutput(error.message);
           });
-  };
+    };
+
+    useEffect(() => {
+      speaker();
+    }, []);
   
   useEffect(() => {
     const audio = new Audio(toriGreeting);
@@ -107,7 +111,6 @@ function Start() {
             <button className="choice-button" onClick={speaker}>
                 Speaker
             </button>
-            <p className="caption">(Press the button & say "Hey Tori" when you are ready)</p>
             {statusMessage && <p className="status-message">{statusMessage}</p>}
             {output}
         </div>
