@@ -32,5 +32,6 @@
         "/home/suki/ros2_ws/install/camera_ocr_package/lib/python3.10/site-packages",
         "/opt/ros/humble/lib/python3.10/site-packages",
         "/opt/ros/humble/local/lib/python3.10/dist-packages"
-    ]
+    ],
+    "liveServer.settings.port": 5501
 }
