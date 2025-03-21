@@ -122,6 +122,12 @@
   height: auto;
 }
 
+.floor-choice-button {
+  position: relative;
+  z-index: 10;
+  pointer-events: auto;
+}
+
 @media (max-width: 480px) {
   .explore-unity-page {
     padding: 15px;
