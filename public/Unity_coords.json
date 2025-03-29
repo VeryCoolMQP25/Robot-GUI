@@ -1,11 +1,11 @@
 {
     "floor_1": {
       "Restrooms": { "x": -4, "y": 0.973, "z": 0.0, "orientationZ": 0.00487, "orientationW": 0.99999 },
-      "UH100": { "x": 2, "y": 25.8, "z": 0.0, "orientationZ": 0.00487, "orientationW": 0.99999 },
-      "UH150": { "x": 1.52, "y": 30.8, "z": 0.0, "orientationZ": 0.00487, "orientationW": 0.99999 },
+      "UH150": { "x": 2, "y": 25.8, "z": 0.0, "orientationZ": 0.00487, "orientationW": 0.99999 },
+      "UH100": { "x": 1.52, "y": 30.8, "z": 0.0, "orientationZ": 0.00487, "orientationW": 0.99999 },
       "UH151": { "x": 2.65, "y": 9.28, "z": 0.0, "orientationZ": 0.00487, "orientationW": 0.99999 },
       "Elevator": { "x": 5.62, "y": 2.12, "z": 0.041, "orientationZ": 0.093, "orientationW": 0.9956 },
-      "Stairs": { "x": 1.62, "y": 35.3, "z": 0.0, "orientationZ": 0.00487, "orientationW": 0.99999 }
+      "Stairs": { "x": 1.62, "y": 30.9, "z": 0.0, "orientationZ": 0.00487, "orientationW": 0.99999 }
     },
     "floor_2": {
       "Study_Area": { "x": 3.95, "y": 0.792, "z": 0.0, "orientationZ": 0.1, "orientationW": 0.99 },
