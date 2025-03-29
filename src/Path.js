@@ -12,21 +12,6 @@ function Path() {
   const { ros, isConnected } = useRos(); // Get the ROS connection from context
   const audioRef = useRef(null); // Store the audio instance
 
-  useEffect(() => {
-    // Create the audio object and play it
-    const audio = new Audio(followMeAudio);
-    audioRef.current = audio;
-    
-    audio.play().catch((error) => console.error("Autoplay blocked:", error));
-
-    return () => {
-      if (audioRef.current) {
-        audioRef.current.pause();
-        audioRef.current.currentTime = 0;
-      }
-    };
-  }, []);
-
   const stopAudio = () => {
     if (audioRef.current) {
       audioRef.current.pause();

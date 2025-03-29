@@ -4,19 +4,19 @@
       "UH100": { "x": 2, "y": 25.8, "z": 0.0, "orientationZ": 0.00487, "orientationW": 0.99999 },
       "UH150": { "x": 1.52, "y": 30.8, "z": 0.0, "orientationZ": 0.00487, "orientationW": 0.99999 },
       "UH151": { "x": 2.65, "y": 9.28, "z": 0.0, "orientationZ": 0.00487, "orientationW": 0.99999 },
-      "Elevator": { "x": 4.64, "y": 3.15, "z": 0.0, "orientationZ": 0.00487, "orientationW": 0.99999 },
+      "Elevator": { "x": 5.62, "y": 2.12, "z": 0.041, "orientationZ": 0.093, "orientationW": 0.9956 },
       "Stairs": { "x": 1.62, "y": 35.3, "z": 0.0, "orientationZ": 0.00487, "orientationW": 0.99999 }
     },
     "floor_2": {
-      "Study_Area": { "x": 1.78, "y": 0.0, "z": 0.0, "orientationZ": 0.1, "orientationW": 0.99 },
-      "Stairs": { "x": 7.8, "y": 0.63, "z": 0.0, "orientationZ": 0.2, "orientationW": 0.98 },
-      "Elevator": { "x": 5.0, "y": 26.7, "z": 0.0, "orientationZ": 0.2, "orientationW": 0.98 },
-      "Restrooms": { "x": 13.7, "y": 28.9, "z": 0.0, "orientationZ": 0.00487, "orientationW": 0.99999 },
-      "UH200": { "x": 5.0, "y": -2.6, "z": 0.0, "orientationZ": 0.00487, "orientationW": 0.99999 },
-      "UH241": { "x": 5.5, "y": 8.6, "z": 0.0, "orientationZ": 0.1, "orientationW": 0.99 },
-      "UH220": { "x": 4.9, "y": 39.7, "z": 0.0, "orientationZ": -0.1, "orientationW": 0.99 },
-      "UH243": { "x": -1.7, "y": 20.8, "z": 0.0, "orientationZ": -0.1, "orientationW": 0.99 },
-      "UH235": { "x": 1.45, "y": 36.3, "z": 0.0, "orientationZ": 0.00487, "orientationW": 0.99999 }
+      "Study_Area": { "x": 3.95, "y": 0.792, "z": 0.0, "orientationZ": 0.1, "orientationW": 0.99 },
+      "Stairs": { "x": 7.81, "y": 1.89, "z": 0.0, "orientationZ": 0.2, "orientationW": 0.98 },
+      "Elevator": { "x": 2.5, "y": 29.93, "z": 0.0, "orientationZ": -0.99, "orientationW": 0.012 },
+      "Restrooms": { "x": 11.2, "y": 42.8, "z": 0.0, "orientationZ": 0.00487, "orientationW": 0.99999 },
+      "UH200": { "x": 7.62, "y": 2.54, "z": 0.0, "orientationZ": 0.00487, "orientationW": 0.99999 },
+      "UH241": { "x": 7.35, "y": 7.61, "z": 0.0, "orientationZ": 0.1, "orientationW": 0.99 },
+      "UH220": { "x": 5.14, "y": 38.1, "z": 0.0, "orientationZ": -0.1, "orientationW": 0.99 },
+      "UH243": { "x": 4.58, "y": 23.6, "z": 0.0, "orientationZ": -0.1, "orientationW": 0.99 },
+      "UH235": { "x": -0.385, "y": 39.6, "z": 0.0, "orientationZ": 0.00487, "orientationW": 0.99999 }
     },
     "floor_3": {
       "Elevator": { "x": 19.3, "y": 10.5, "z": 0.0, "orientationZ": 0.2, "orientationW": 0.98 },
@@ -29,14 +29,14 @@
       "Study_Lounge": { "x": 50.2, "y": 4.98, "z": 0.0, "orientationZ": -0.1, "orientationW": 0.99 }
     },
     "floor_4": {
-      "UH400": { "x": 36.8, "y": 2.27, "z": 0.0, "orientationZ": 0.00487, "orientationW": 0.99999 },
-      "UH405": { "x": 26.1, "y": 1.73, "z": 0.0, "orientationZ": 0.1, "orientationW": 0.99 },
-      "UH420": { "x": 11.8, "y": 1.49, "z": 0.0, "orientationZ": -0.1, "orientationW": 0.99 },
-      "Elevator": { "x": 18.9, "y": 0.243, "z": 0.0, "orientationZ": 0.2, "orientationW": 0.98 },
-      "Restrooms": { "x": 17.1, "y": 9.18, "z": 0.0, "orientationZ": 0.00487, "orientationW": 0.99999 },
-      "Study_Area": { "x": 48.7, "y": -0.122, "z": 0.0, "orientationZ": 0.1, "orientationW": 0.99 },
-      "Tech_Suites": { "x": 26.9, "y": -2.47, "z": 0.0, "orientationZ": -0.1, "orientationW": 0.99 },
-      "Stairs": { "x": 49.7, "y": 3.58, "z": 0.0, "orientationZ": 0.2, "orientationW": 0.98 }
+      "UH400": { "x": 0.0393, "y": -0.172, "z": 0.0, "orientationZ": 0.00487, "orientationW": 0.99999 },
+      "UH405": { "x": 24, "y": 0.0715, "z": 0.0, "orientationZ": 0.1, "orientationW": 0.99 },
+      "UH420": { "x": 34.46, "y": 0.774, "z": 0.0, "orientationZ": -0.1, "orientationW": 0.99 },
+      "Elevator": { "x": 18.74, "y": -1.16, "z": 0, "orientationZ": -0.708, "orientationW": 0.705},
+      "Restrooms": { "x": 17.1, "y": 6.989, "z": 0.0, "orientationZ": 0.00487, "orientationW": 0.99999 },
+      "Study_Area": { "x": 47.78, "y": -1.501, "z": -1.277, "orientationZ": 0.1, "orientationW": 0.99 },
+      "Tech_Suites": { "x": 26.72, "y": -2.36, "z": -1.36, "orientationZ": -0.1, "orientationW": 0.99 },
+      "Stairs": { "x": 47.8, "y": 1.226, "z": 0.0, "orientationZ": 0.2, "orientationW": 0.98 }
     },
     "floor_5": {
       "Study_Area": { "x": 71.7, "y": -4.84, "z": 0.0, "orientationZ": 0.1, "orientationW": 0.99 },

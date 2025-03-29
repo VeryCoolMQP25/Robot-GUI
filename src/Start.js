@@ -18,7 +18,7 @@ function Start() {
         if (statusMessage === "Please wait....." || statusMessage.includes("navigating")) {
             const interval = setInterval(() => {
                 checkNavigationStatus();
-            }, 5000); // Check every 5 seconds
+            }, 2000); // Check every 2 seconds
             
             return () => clearInterval(interval);
         }
@@ -67,19 +67,7 @@ function Start() {
       speaker();
     }, []);
   
-  useEffect(() => {
-    const audio = new Audio(toriGreeting);
-    audioRef.current = audio;
-    
-    audio.play().catch(error => console.error("Autoplay blocked:", error));
 
-    return () => {
-      if (audioRef.current) {
-        audioRef.current.pause();
-        audioRef.current.currentTime = 0;
-      }
-    };
-  }, []);
 
   const stopAudioAndNavigate = (path) => {
     if (audioRef.current) {
@@ -111,17 +99,10 @@ function Start() {
             <button className="choice-button" onClick={speaker}>
                 Speaker
             </button>
-            {statusMessage && <p className="status-message">{statusMessage}</p>}
-            {output}
         </div>
       </div>
 
-          {/* Display room information if available */}
-          {roomNumber && (
-              <div className="navigation-info">
-                  <p>{output}</p>
-              </div>
-          )}
+          
         {/* Footer container for logo */}
         <div className="footer">
           <img src="/WPI_logo.png" alt="WPI Logo" className="wpi-logo" />
