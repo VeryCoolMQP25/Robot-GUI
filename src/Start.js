@@ -83,11 +83,11 @@ function Start() {
       <h1>Welcome to Unity Hall!</h1>
 
       <div className="button-container">
-        <div className="option">
+        {/* <div className="option">
           <button className="choice-button" onClick={() => stopAudioAndNavigate("/destination-input")}>
             Take Me To...
           </button>
-        </div>
+        </div> */}
 
         <div className="option">
           <button className="choice-button" onClick={() => stopAudioAndNavigate("/explore-unity")}>

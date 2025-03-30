@@ -1,14 +1,13 @@
-import React, { useEffect, useRef } from "react";
-import { useParams, useNavigate } from "react-router-dom";
+import "./Arrived.css"; 
+import { useNavigate } from "react-router-dom";
 import ROSLIB from "roslib";
-import { useRos } from "./RosContext"; // Use the custom hook
-import "./Path.css";
-import faceImage from "./face.jpg";
+import { useRos } from "./RosContext"; 
 import followMeAudio from "./follow.mp3";
+import React, { useEffect, useRef } from "react";
+import faceImage from "./face.jpg";
 
-function Path() {
-  const { room } = useParams();
-  const navigate = useNavigate();
+
+function Arrived() {
   const { ros, isConnected } = useRos(); // Get the ROS connection from context
   const audioRef = useRef(null); // Store the audio instance
 
@@ -35,36 +34,8 @@ function Path() {
     }
   };
 
-  useEffect(() => {
-    if (ros && isConnected) {
-  
-      // Subscriber for close to goal pose
-      const goal_subscriber = new ROSLIB.Topic({
-        ros: ros,
-        name: "/check_goal_proximity",
-        messageType: "std_msgs/Int32",
-      });
-
-    // console.log("Listenting for messages on " + goal_subscriber.name);
-    const handleArrived = (message) => {
-      console.log('Received message on ' + goal_subscriber.name + ': ' + message.data); 
-      if(message.data == 1){
-        navigate(`/Arrived`);
-      }
-    };
-
-    goal_subscriber.subscribe(handleArrived)
-
-    return () => {goal_subscriber.unsubscribe()};
-  }}, 
-      [ros, isConnected, navigate]
-    );
  
 
-  const handleExit = () => {
-    stopAudio(); // Stop the audio when the button is clicked
-    navigate("/");
-  };
 
     // const checkArrived = () => {
       
@@ -99,12 +70,12 @@ function Path() {
       height: "100vh", 
       width: "100vw" 
     }}>
-      <h1 className="left-heading">Follow Me!</h1>
-      <button onClick={handleExit} className="exit-button">
-        Exit
+      <h1 className="left-heading">Hello!</h1>
+      <button className="exit-button">
+        Arrived
       </button>
     </div>
   );
 }
 
-export default Path;
+export default Arrived;
