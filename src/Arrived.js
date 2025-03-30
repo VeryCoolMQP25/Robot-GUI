@@ -10,32 +10,36 @@ import faceImage from "./face.jpg";
 function Arrived() {
   const { ros, isConnected } = useRos(); // Get the ROS connection from context
   const audioRef = useRef(null); // Store the audio instance
+  const navigate = useNavigate();
 
-  useEffect(() => {
-    // Create the audio object and play it
-    const audio = new Audio(followMeAudio);
-    audioRef.current = audio;
+//   useEffect(() => {
+//     // Create the audio object and play it
+//     const audio = new Audio(followMeAudio);
+//     audioRef.current = audio;
     
-    audio.play().catch((error) => console.error("Autoplay blocked:", error));
+//     audio.play().catch((error) => console.error("Autoplay blocked:", error));
 
-    return () => {
-      if (audioRef.current) {
-        audioRef.current.pause();
-        audioRef.current.currentTime = 0;
-      }
-    };
-  }, []);
+//     return () => {
+//       if (audioRef.current) {
+//         audioRef.current.pause();
+//         audioRef.current.currentTime = 0;
+//       }
+//     };
+//   }, []);
 
-  const stopAudio = () => {
-    if (audioRef.current) {
-      audioRef.current.pause();
-      audioRef.current.currentTime = 0;
-      console.log("Audio stopped");
-    }
-  };
+//   const stopAudio = () => {
+//     if (audioRef.current) {
+//       audioRef.current.pause();
+//       audioRef.current.currentTime = 0;
+//       console.log("Audio stopped");
+//     }
+//   };
 
  
 
+  const handleExit = () => {
+    navigate("/");
+  };
 
     // const checkArrived = () => {
       
@@ -70,9 +74,9 @@ function Arrived() {
       height: "100vh", 
       width: "100vw" 
     }}>
-      <h1 className="left-heading">Hello!</h1>
-      <button className="exit-button">
-        Arrived
+      <h1 className="left-heading">We have arrived!</h1>
+      <button onClick={handleExit} className="exit-button">
+        Exit
       </button>
     </div>
   );
