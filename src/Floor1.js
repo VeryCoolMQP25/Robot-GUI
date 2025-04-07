@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { useRos } from "./RosContext"; // Import the RosContext hook
+import { useRos } from "./RosContext"; 
 import ROSLIB from "roslib";
 import "./App.css";
 
 function Floor1() {
   const navigate = useNavigate();
-  const { ros, isConnected } = useRos(); // Use the shared ROS connection
+  const { ros, isConnected } = useRos(); 
   const [roomCoordinates, setRoomCoordinates] = useState({});
   const [floor1Rooms, setFloor1Rooms] = useState([]);
 

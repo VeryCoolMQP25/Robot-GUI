@@ -35,28 +35,61 @@ function Path() {
     }
   };
 
+  useEffect(() => {
+    if (ros && isConnected) {
+  
+      // Subscriber for close to goal pose
+      const goal_subscriber = new ROSLIB.Topic({
+        ros: ros,
+        name: "/check_goal_proximity",
+        messageType: "std_msgs/Int32",
+      });
+
+    // console.log("Listenting for messages on " + goal_subscriber.name);
+    const handleArrived = (message) => {
+      console.log('Received message on ' + goal_subscriber.name + ': ' + message.data); 
+      if(message.data == 1){
+        navigate(`/Arrived`);
+      }
+    };
+
+    goal_subscriber.subscribe(handleArrived)
+
+    return () => {goal_subscriber.unsubscribe()};
+  }}, 
+      [ros, isConnected, navigate]
+    );
+ 
+
   const handleExit = () => {
     stopAudio(); // Stop the audio when the button is clicked
-
-    if (ros && isConnected) {
-      const roomPublisher = new ROSLIB.Topic({
-        ros: ros,
-        name: "/room",
-        messageType: "std_msgs/String",
-      });
-
-      const stopMessage = new ROSLIB.Message({
-        data: "stop",
-      });
-
-      roomPublisher.publish(stopMessage);
-      console.log("Published stop message to /room topic");
-    } else {
-      console.error("ROS connection not initialized or disconnected.");
-    }
-
     navigate("/");
   };
+
+    // const checkArrived = () => {
+      
+    //   if (ros && isConnected) {
+  
+    //     // Subscriber for close to goal pose
+    //     const goal_subscriber = new ROSLIB.Topic({
+    //       ros: ros,
+    //       name: "/check_goal_proximity",
+    //       messageType: "std_msgs/Int32",
+    //     });
+  
+    //     goal_subscriber.subscribe(handleArrived(message));
+    //     console.log('Received message on ' + goal_subscriber.name + ': ' + message.data);
+    //           } else {
+    //     console.error("ROS is not connected");
+    //   }
+    // };
+
+    // const handleArrived = () => {
+    //   if(message.data == 1){
+    //     navigate(`/Arrived`);
+    //   }
+    // };
+  
 
   return (
     <div className="path-page" style={{ 

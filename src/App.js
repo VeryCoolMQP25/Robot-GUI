@@ -7,6 +7,7 @@ import Floor2 from "./Floor2";
 import Floor3 from "./Floor3";  
 import Floor4 from "./Floor4";  
 import Floor5 from "./Floor5";  
+import Arrived from "./Arrived";  
 import DestinationInput from "./DestinationInput";
 import Path from "./Path";
 
@@ -25,6 +26,7 @@ function App() {
         <Route path="/floor3" element={<Floor3 />} />
         <Route path="/floor4" element={<Floor4 />} />
         <Route path="/floor5" element={<Floor5 />} />
+        <Route path="/Arrived" element={<Arrived />} />
 
       </Routes>
     </Router>
