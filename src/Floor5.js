@@ -3,7 +3,11 @@ import { useNavigate } from "react-router-dom";
 import { useRos } from "./RosContext"; 
 import ROSLIB from "roslib";
 import "./App.css";
-import {ReactComponent as Logo} from './house-solid.svg';
+import {ReactComponent as Home} from './house-solid.svg';
+import {ReactComponent as Back} from './arrow-left-solid.svg';
+import {ReactComponent as StairsIcon} from './stairs-solid.svg';
+import {ReactComponent as ElevatorIcon} from './elevator-solid.svg';
+import {ReactComponent as RestroomIcon} from './restroom-solid.svg';
 
 function Floor5() {
   const navigate = useNavigate();
@@ -109,7 +113,7 @@ function Floor5() {
           <div className="section study-areas-row">
             <p className="section-title"></p>
             <div className="floor-map">
-              {["Study_Area"].map((room) => (
+              {["Study_Lounge"].map((room) => (
                 <div
                   key={room}
                   onClick={() => handleNavigation(room)}
@@ -133,7 +137,7 @@ function Floor5() {
             </div>
           </div>
 
-          <div className="section another-floor-row">
+          {/* <div className="section another-floor-row">
             <p className="section-title"></p>
             <div className="floor-map">
               {["Stairs", "Elevator"].map((room) => (
@@ -147,8 +151,8 @@ function Floor5() {
               ))}
             </div>
           </div>
-
-          <div className="section restrooms-row">
+ */}
+          {/* <div className="section restrooms-row">
             <p className="section-title"></p>
             <div className="floor-map">
               <div
@@ -158,14 +162,20 @@ function Floor5() {
                 Restrooms
               </div>
             </div>
-          </div>
+          </div> */}
         </>
       ) : (
         <p>Loading room coordinates...</p>
       )}
 
-      <button className="home-button" onClick={() => navigate("/")}><Logo className='logo' />
-      </button>
+      {/* <button className="home-button" onClick={() => navigate("/")}><Home className='logo' /> </button> */}
+      <button className="back-button" onClick={() => navigate("/explore-unity")}><Back className='logo'/></button>
+      <button className="stairs-button" onClick={() => handleNavigation("Stairs")}><StairsIcon className='logo'/></button>
+      <button className="elevator-button" onClick={() => handleNavigation("Elevator")}><ElevatorIcon className='logo'/></button>
+      <button className="restrooms-button" onClick={() => handleNavigation("Restrooms")}><RestroomIcon className='logo'/></button>
+
+      {/* <button className="restroom-button" onClick={() => navigate("/explore-unity")}><Back className='logo'/></button> */}
+
     </div>
   );
 }

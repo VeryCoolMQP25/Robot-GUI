@@ -8,7 +8,7 @@
       "Stairs": { "x": 1.62, "y": 30.9, "z": 0.0, "orientationZ": 0.00487, "orientationW": 0.99999 }
     },
     "floor_2": {
-      "Study_Area": { "x": 3.95, "y": 0.792, "z": 0.0, "orientationZ": 0.1, "orientationW": 0.99 },
+      "Study_Lounge": { "x": 3.95, "y": 0.792, "z": 0.0, "orientationZ": 0.1, "orientationW": 0.99 },
       "Stairs": { "x": 7.81, "y": 1.89, "z": 0.0, "orientationZ": 0.2, "orientationW": 0.98 },
       "Elevator": { "x": 2.5, "y": 29.93, "z": 0.0, "orientationZ": -0.99, "orientationW": 0.012 },
       "Restrooms": { "x": 11.2, "y": 42.8, "z": 0.0, "orientationZ": 0.00487, "orientationW": 0.99999 },
@@ -34,12 +34,12 @@
       "UH420": { "x": 34.46, "y": 0.774, "z": 0.0, "orientationZ": -0.1, "orientationW": 0.99 },
       "Elevator": { "x": 18.74, "y": -1.16, "z": 0, "orientationZ": -0.708, "orientationW": 0.705},
       "Restrooms": { "x": 17.1, "y": 6.989, "z": 0.0, "orientationZ": 0.00487, "orientationW": 0.99999 },
-      "Study_Area": { "x": 47.78, "y": -1.501, "z": -1.277, "orientationZ": 0.1, "orientationW": 0.99 },
+      "Study_Lounge": { "x": 47.78, "y": -1.501, "z": -1.277, "orientationZ": 0.1, "orientationW": 0.99 },
       "Tech_Suites": { "x": 26.72, "y": -2.36, "z": -1.36, "orientationZ": -0.1, "orientationW": 0.99 },
       "Stairs": { "x": 47.8, "y": 1.226, "z": 0.0, "orientationZ": 0.2, "orientationW": 0.98 }
     },
     "floor_5": {
-      "Study_Area": { "x": 71.7, "y": -4.84, "z": 0.0, "orientationZ": 0.1, "orientationW": 0.99 },
+      "Study_Lounge": { "x": 71.7, "y": -4.84, "z": 0.0, "orientationZ": 0.1, "orientationW": 0.99 },
       "Stairs": { "x": 66.2, "y": 0.8, "z": 0.0, "orientationZ": 0.2, "orientationW": 0.98 },
       "Elevator": { "x": 37.8, "y": -0.5, "z": 0.0, "orientationZ": 0.2, "orientationW": 0.98 },
       "Restrooms": { "x": 36.3, "y": 8.37, "z": 0.0, "orientationZ": 0.00487, "orientationW": 0.99999 },

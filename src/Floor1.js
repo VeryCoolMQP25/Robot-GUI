@@ -3,7 +3,11 @@ import { useNavigate } from "react-router-dom";
 import { useRos } from "./RosContext"; 
 import ROSLIB from "roslib";
 import "./App.css";
-import {ReactComponent as Logo} from './house-solid.svg';
+import {ReactComponent as Home} from './house-solid.svg';
+import {ReactComponent as Back} from './arrow-left-solid.svg';
+import {ReactComponent as StairsIcon} from './stairs-solid.svg';
+import {ReactComponent as ElevatorIcon} from './elevator-solid.svg';
+import {ReactComponent as RestroomIcon} from './restroom-solid.svg';
 
 function Floor1() {
   const navigate = useNavigate();
@@ -105,18 +109,8 @@ function Floor1() {
             </div>
           </div>
 
-          {/* <div className="section study-areas-row">
-            <p className="section-title">Study Areas</p>
-            <div className="floor-map">
-              {["Tech_Suites", "Study_Area"].map((room) => (
-                <div key={room} onClick={() => handleNavigation(room)} className="room">
-                  {room.replace("_", " ")}
-                </div>
-              ))}
-            </div>
-          </div> */}
 
-          <div className="section another-floor-row">
+          {/* <div className="section another-floor-row">
             <p className="section-title"></p>
             <div className="floor-map">
               {["Stairs", "Elevator"].map((room) => (
@@ -134,14 +128,22 @@ function Floor1() {
                 Restrooms
               </div>
             </div>
-          </div>
+          </div> */}
         </>
       ) : (
         <p>Loading room coordinates...</p>
       )}
-      <button className="home-button" onClick={() => navigate("/")}>   <Logo className='logo' />  </button>
-
+      {/* <button className="home-button" onClick={() => navigate("/")}><Home className='logo' /> </button> */}
+      <button className="back-button" onClick={() => navigate("/explore-unity")}><Back className='logo'/></button>
+      <button className="stairs-button" onClick={() => handleNavigation("Stairs")}><StairsIcon className='logo'/></button>
+      <button className="elevator-button" onClick={() => handleNavigation("Elevator")}><ElevatorIcon className='logo'/></button>
+      <button className="restrooms-button" onClick={() => handleNavigation("Restrooms")}><RestroomIcon className='logo'/></button>
+      {/* <div className="footer">
+          <img src="/WPI_logo.png" alt="WPI Logo" className="wpi-logo" />
+        </div> */}
     </div>
+
+    
   );
 }
 

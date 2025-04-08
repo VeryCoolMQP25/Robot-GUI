@@ -4,7 +4,6 @@ import ROSLIB from "roslib";
 import { useRos } from "./RosContext"; // Use the custom hook
 import "./Path.css";
 import faceImage from "./face.jpg";
-import followMeAudio from "./follow.mp3";
 
 function Path() {
   const { room } = useParams();
@@ -12,20 +11,20 @@ function Path() {
   const { ros, isConnected } = useRos(); // Get the ROS connection from context
   const audioRef = useRef(null); // Store the audio instance
 
-  useEffect(() => {
-    // Create the audio object and play it
-    const audio = new Audio(followMeAudio);
-    audioRef.current = audio;
+  // useEffect(() => {
+  //   // Create the audio object and play it
+  //   const audio = new Audio(followMeAudio);
+  //   audioRef.current = audio;
     
-    audio.play().catch((error) => console.error("Autoplay blocked:", error));
+  //   audio.play().catch((error) => console.error("Autoplay blocked:", error));
 
-    return () => {
-      if (audioRef.current) {
-        audioRef.current.pause();
-        audioRef.current.currentTime = 0;
-      }
-    };
-  }, []);
+  //   return () => {
+  //     if (audioRef.current) {
+  //       audioRef.current.pause();
+  //       audioRef.current.currentTime = 0;
+  //     }
+  //   };
+  // }, []);
 
   const stopAudio = () => {
     if (audioRef.current) {

@@ -2,7 +2,6 @@ import "./Arrived.css";
 import { useNavigate } from "react-router-dom";
 import ROSLIB from "roslib";
 import { useRos } from "./RosContext"; 
-import followMeAudio from "./follow.mp3";
 import React, { useEffect, useRef } from "react";
 import faceImage from "./face.jpg";
 
