@@ -55,7 +55,7 @@
 /* Buttons */
 .choice-button {
   padding: 3vh 6vw;
-  font-size: clamp(1.5em, 3vw, 2em);
+  font-size: 2.0em;
   width: clamp(250px, 35vw, 350px); 
   background-color: #ac2b37;
   color: white;

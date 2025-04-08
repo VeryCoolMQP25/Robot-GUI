@@ -13,7 +13,7 @@ function ExploreUnity() {
       <button 
         className="home-choice-button" 
         onClick={() => navigate("/")}
-      ><FontAwesomeIcon icon={faHome}/>  </button>
+      > </button>
 
       <h1>Explore Unity Hall</h1>
       <p>Select a floor:</p>
