@@ -4,6 +4,8 @@ import ROSLIB from "roslib";
 import { useRos } from "./RosContext"; 
 import React, { useEffect, useRef } from "react";
 import faceImage from "./face.jpg";
+import { useWindowSize } from 'react-use'
+import Confetti from 'react-confetti'
 
 
 function Arrived() {
@@ -64,21 +66,38 @@ function Arrived() {
     //   }
     // };
   
-
-  return (
-    <div className="path-page" style={{ 
-      backgroundImage: `url(${faceImage})`, 
-      backgroundSize: "cover", 
-      backgroundPosition: "center", 
-      height: "100vh", 
-      width: "100vw" 
-    }}>
-      <h1 className="left-heading">We have arrived!</h1>
-      <button onClick={handleExit} className="exit-button">
-        Exit
-      </button>
-    </div>
-  );
+      const { width, height } = useWindowSize()
+      return (
+      <div className="path-page" style={{ 
+        backgroundImage: `url(${faceImage})`, 
+        backgroundSize: "cover", 
+        backgroundPosition: "center", 
+        height: "100vh", 
+        width: "100vw" 
+      }}>
+        <h1 className="left-heading">We have arrived!</h1>
+        <button onClick={handleExit} className="exit-button">
+          Exit
+        </button>
+        <Confetti
+        width={width}
+        height={height}
+      />
+      </div>
+    );
 }
 
+// import React from 'react'
+// import { useWindowSize } from 'react-use'
+// import Confetti from 'react-confetti'
+
+// export default () => {
+//   const { width, height } = useWindowSize()
+//   return (
+//     <Confetti
+//       width={width}
+//       height={height}
+//     />
+//   )
+// }
 export default Arrived;

@@ -90,7 +90,7 @@ function Start() {
 
         <div className="option">
           <button className="choice-button" onClick={() => stopAudioAndNavigate("/explore-unity")}>
-            Explore Unity
+            Explore Unity Hall
           </button>
         </div>
 
