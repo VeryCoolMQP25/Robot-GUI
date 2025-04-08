@@ -3,6 +3,8 @@ import { useNavigate } from "react-router-dom";
 import { useRos } from "./RosContext"; 
 import ROSLIB from "roslib";
 import "./App.css";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faHome } from '@fortawesome/free-solid-svg-icons'
 
 function Floor1() {
   const navigate = useNavigate();
@@ -91,7 +93,8 @@ function Floor1() {
       {Object.keys(roomCoordinates).length > 0 ? (
         <>
           <div className="section classrooms-row">
-            <p className="section-title">Classrooms</p>
+            <p className="section-title"></p>
+            
             <div className="floor-map">
               {floor1Rooms
                 .filter((room) => room.startsWith("UH"))
@@ -115,7 +118,7 @@ function Floor1() {
           </div> */}
 
           <div className="section another-floor-row">
-            <p className="section-title">Another Floor</p>
+            <p className="section-title"></p>
             <div className="floor-map">
               {["Stairs", "Elevator"].map((room) => (
                 <div key={room} onClick={() => handleNavigation(room)} className="room">
@@ -126,7 +129,7 @@ function Floor1() {
           </div>
 
           <div className="section restrooms-row">
-            <p className="section-title">Restrooms</p>
+            <p className="section-title"></p>
             <div className="floor-map">
               <div onClick={() => handleNavigation("Restrooms")} className="room restrooms-room">
                 Restrooms
@@ -137,7 +140,8 @@ function Floor1() {
       ) : (
         <p>Loading room coordinates...</p>
       )}
-      <button className="home-button" onClick={() => navigate("/")}>Home</button>
+      <button className="home-button" onClick={() => navigate("/")}><FontAwesomeIcon icon={faHome}/></button>
+
     </div>
   );
 }

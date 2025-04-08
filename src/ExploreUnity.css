@@ -1,6 +1,6 @@
 /* Ensure styles apply only to the ExploreUnity page */
 .explore-unity-page {
-  font-family: 'Roboto', Arial, sans-serif;
+  font-family: 'Roboto';
   background-color: #f7f9fc;
   margin: 0;
   padding: 0;
@@ -41,6 +41,7 @@
   margin-bottom: 40px;
   text-align: center;
   max-width: 90%;
+  
 }
 
 /* Floor selection container */
@@ -51,17 +52,19 @@
   align-items: center;
   width: 100%;
   max-width: 600px;
+
 }
 
 /* Buttons */
-.explore-unity-page .floor-choice-button,
-.explore-unity-page .home-choice-button {
+.explore-unity-page .floor-choice-button {
   padding: clamp(15px, 3vw, 20px) clamp(30px, 4vw, 40px);
   font-size: clamp(1.5em, 3vw, 2em);
   border-radius: 12px;
   cursor: pointer;
   transition: background-color 0.3s ease, transform 0.2s ease;
   text-align: center;
+  /* font-weight: bold; */
+
 }
 
 /* Floor selection button */
@@ -70,6 +73,7 @@
   color: white;
   border: none;
   width: clamp(220px, 25vw, 300px); 
+  font-weight: bold;
 }
 
 .explore-unity-page .floor-choice-button:hover {
@@ -81,14 +85,21 @@
 .explore-unity-page .home-choice-button {
   position: absolute;
   top: clamp(15px, 4vw, 30px);
-  left: clamp(15px, 4vw, 30px);
+  right: clamp(15px, 4vw, 30px);
   background-color: #ccc;
   color: black;
   border: none;
+  padding: clamp(15px, 3vw, 20px) clamp(30px, 4vw, 40px);
+  font-size: clamp(1.5em, 3vw, 2em);
+  border-radius: 12px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+  text-align: center;
+
 }
 
 .explore-unity-page .home-choice-button:hover {
-  background-color: #bbb;
+  background-color: #ac2b37;
 }
 
 /* Responsive Design */
@@ -142,7 +153,7 @@
   }
 
   .explore-unity-page .floor-choice-button,
-  .explore-unity-page .home-choice-button {
+  .explore-unity-page {
     font-size: 1.2em;
     width: 95%;
   }

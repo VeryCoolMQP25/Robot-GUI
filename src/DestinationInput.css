@@ -40,21 +40,21 @@
 }
 
 /* Button shared styling */
-.submit-button,
+/* .submit-button,
 .home-button {
-  width: 100%;
-  max-width: 250px; 
-  padding: clamp(15px, 3vw, 20px) clamp(30px, 4vw, 40px); 
-  font-size: clamp(1.3em, 3vw, 1.8em);
-  border-radius: 10px;
+  position: absolute;
+  top: clamp(15px, 4vw, 30px);
+  left: clamp(15px, 4vw, 30px);
+  background-color: #ccc;
+  color: black;
+  border: none;
+  padding: clamp(15px, 3vw, 20px) clamp(30px, 4vw, 40px);
+  font-size: clamp(1.5em, 3vw, 2em);
+  border-radius: 12px;
   cursor: pointer;
   transition: background-color 0.3s ease, transform 0.2s ease;
   text-align: center;
-  border: none;
-  display: block;
-  margin: 15px auto 0;
-  font-family: 'Roboto', Arial, sans-serif;
-}
+} */
 
 .submit-button {
   background-color: #ac2b37;
@@ -67,7 +67,7 @@
 }
 
 /* Home button styles */
-.home-button {
+/* .home-button {
   background-color: #ccc;
   color: black;
 }
@@ -75,7 +75,7 @@
 .home-button:hover {
   background-color: #bbb;
   transform: scale(1.07);
-}
+} */
 
 .destination-input:focus {
   outline: none;

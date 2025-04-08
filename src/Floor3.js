@@ -3,6 +3,8 @@ import { useNavigate } from "react-router-dom";
 import ROSLIB from "roslib";
 import { useRos } from "./RosContext"; // Use the custom hook
 import "./App.css";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faHome } from '@fortawesome/free-solid-svg-icons'
 
 function Floor3() {
   const navigate = useNavigate();
@@ -141,7 +143,7 @@ function Floor3() {
       ) : (
         <p>Loading room coordinates...</p>
       )}
-      <button className="home-button" onClick={() => navigate("/")}>Home</button>
+      <button className="home-button" onClick={() => navigate("/")}><FontAwesomeIcon icon={faHome}/>Home</button>
     </div>
   );
 }

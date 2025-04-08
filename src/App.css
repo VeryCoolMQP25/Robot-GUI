@@ -1,7 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&family=Pacifico&family=Playfair+Display:wght@700&family=Lobster&display=swap');
 
 body {
-  font-family: 'Roboto', Arial, sans-serif;
+  font-family: 'Roboto';
   background-color: #f0f4f8;
   margin: 0;
   padding: 0;
@@ -171,28 +171,30 @@ p {
 }
 
 .home-button {
-  background-color: #28a745; 
-  color: white;
-  font-size: 1.5em;
-  font-weight: bold;
-  padding: 15px 30px;
+  position: absolute;
+  top: clamp(15px, 4vw, 30px);
+  right: clamp(15px, 4vw, 30px);
+  background-color: #ccc;
+  color: black;
   border: none;
+  padding: clamp(15px, 3vw, 20px) clamp(30px, 4vw, 40px);
+  font-size: clamp(1.5em, 3vw, 2em);
   border-radius: 12px;
   cursor: pointer;
-  transition: transform 0.2s ease, background-color 0.3s ease;
-  margin-top: 30px; 
+  transition: background-color 0.3s ease, transform 0.2s ease;
+  text-align: center;  
 }
 
 .home-button:hover {
-  background-color: #218838; 
+  background-color: #ac2b37; 
   transform: scale(1.05); /* zoom effect for funsies */
 }
 
 @media (max-width: 768px) {
-  .home-button {
+  /* .home-button {
     font-size: 1.2em;
     padding: 12px 25px;
-  }
+  } */
 
   .room {
     font-size: 1.5em;
@@ -234,4 +236,10 @@ p {
 .restrooms-box .room:hover {
   background-color: #ac2b37;
 }
+
+/* .home-button {
+  font-size: 1.2em;
+  width: 95%;
+} */
+
 
