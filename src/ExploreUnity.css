@@ -84,7 +84,7 @@
 /* Home button */
 .explore-unity-page .home-choice-button {
   position: absolute;
-  bottom: clamp(30px, 4vw, 35px);
+  top: clamp(30px, 4vw, 35px);
   right: clamp(15px, 4vw, 30px);
   background-color: #ccc;
   color: black;
