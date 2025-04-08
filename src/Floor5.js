@@ -3,8 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { useRos } from "./RosContext"; 
 import ROSLIB from "roslib";
 import "./App.css";
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faHome } from '@fortawesome/free-solid-svg-icons'
+import {ReactComponent as Logo} from './house-solid.svg';
 
 function Floor5() {
   const navigate = useNavigate();
@@ -95,7 +94,7 @@ function Floor5() {
       {Object.keys(roomCoordinates).length > 0 ? (
         <>
           <div className="section classrooms-row">
-            <p className="section-title">Classrooms</p>
+            <p className="section-title"></p>
             <div className="floor-map">
               {floor5Rooms
                 .filter((room) => room.startsWith("UH")) // Selects only rooms that start with "UH"
@@ -108,7 +107,7 @@ function Floor5() {
           </div>
 
           <div className="section study-areas-row">
-            <p className="section-title">Study Areas</p>
+            <p className="section-title"></p>
             <div className="floor-map">
               {["Study_Area"].map((room) => (
                 <div
@@ -123,7 +122,7 @@ function Floor5() {
           </div>
 
           <div className="section career-development-row">
-            <p className="section-title">Career Development Center</p>
+            <p className="section-title"></p>
             <div className="floor-map">
               <div
                 onClick={() => handleNavigation("Career_Development_Center")}
@@ -135,7 +134,7 @@ function Floor5() {
           </div>
 
           <div className="section another-floor-row">
-            <p className="section-title">Another Floor</p>
+            <p className="section-title"></p>
             <div className="floor-map">
               {["Stairs", "Elevator"].map((room) => (
                 <div
@@ -150,7 +149,7 @@ function Floor5() {
           </div>
 
           <div className="section restrooms-row">
-            <p className="section-title">Restrooms</p>
+            <p className="section-title"></p>
             <div className="floor-map">
               <div
                 onClick={() => handleNavigation("Restrooms")}
@@ -165,7 +164,7 @@ function Floor5() {
         <p>Loading room coordinates...</p>
       )}
 
-      <button className="home-button" onClick={() => navigate("/")}><FontAwesomeIcon icon={faHome}/>
+      <button className="home-button" onClick={() => navigate("/")}><Logo className='logo' />
       </button>
     </div>
   );

@@ -3,8 +3,7 @@ import { useNavigate } from "react-router-dom";
 import ROSLIB from "roslib";
 import { useRos } from "./RosContext"; 
 import "./App.css";
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faHome } from '@fortawesome/free-solid-svg-icons'
+import {ReactComponent as Logo} from './house-solid.svg';
 
 function Floor4() {
   const navigate = useNavigate();
@@ -95,7 +94,7 @@ function Floor4() {
       {Object.keys(roomCoordinates).length > 0 ? (
         <>
           <div className="section classrooms-row">
-            <p className="section-title">Classrooms</p>
+            <p className="section-title"></p>
             <div className="floor-map">
               {floor4Rooms
                 .filter((room) => room.startsWith("UH"))
@@ -108,7 +107,7 @@ function Floor4() {
           </div>
 
           <div className="section study-areas-row">
-            <p className="section-title">Study Areas</p>
+            <p className="section-title"></p>
             <div className="floor-map">
               {["Tech_Suites", "Study_Area"].map((room) => (
                 <div key={room} onClick={() => handleNavigation(room)} className="room">
@@ -119,7 +118,7 @@ function Floor4() {
           </div>
 
           <div className="section another-floor-row">
-            <p className="section-title">Another Floor</p>
+            <p className="section-title"></p>
             <div className="floor-map">
               {["Stairs", "Elevator"].map((room) => (
                 <div key={room} onClick={() => handleNavigation(room)} className="room">
@@ -130,7 +129,7 @@ function Floor4() {
           </div>
 
           <div className="section restrooms-row">
-            <p className="section-title">Restrooms</p>
+            <p className="section-title"></p>
             <div className="floor-map">
               <div onClick={() => handleNavigation("Restrooms")} className="room restrooms-room">
                 Restrooms
@@ -141,7 +140,7 @@ function Floor4() {
       ) : (
         <p>Loading room coordinates...</p>
       )}
-      <button className="home-button" onClick={() => navigate("/")}><FontAwesomeIcon icon={faHome}/></button>
+      <button className="home-button" onClick={() => navigate("/")}><Logo className='logo' /></button>
     </div>
   );
 }

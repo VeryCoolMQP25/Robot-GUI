@@ -24,7 +24,11 @@ body {
   overflow-y: auto; /* Allow scrolling within app */
 }
 
-
+.logo {
+  width: 24px;
+  height: 24px;
+  /* fill: #45489a; \ */
+}
 
 
 h1 {

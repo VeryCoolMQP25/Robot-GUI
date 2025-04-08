@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import "./ExploreUnity.css"; 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faHome } from '@fortawesome/free-solid-svg-icons'
+import {ReactComponent as Logo} from './house-solid.svg';
 
 function ExploreUnity() {
   const navigate = useNavigate();
@@ -13,7 +14,7 @@ function ExploreUnity() {
       <button 
         className="home-choice-button" 
         onClick={() => navigate("/")}
-      > </button>
+      > <Logo className='logo' /></button>
 
       <h1>Explore Unity Hall</h1>
       <p>Select a floor:</p>

@@ -3,8 +3,7 @@ import { useNavigate } from "react-router-dom";
 import ROSLIB from "roslib";
 import { useRos } from "./RosContext"; // Use the custom hook
 import "./App.css";
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faHome } from '@fortawesome/free-solid-svg-icons'
+import {ReactComponent as Logo} from './house-solid.svg';
 
 function Floor2() {
   const navigate = useNavigate();
@@ -96,7 +95,7 @@ function Floor2() {
       {Object.keys(roomCoordinates).length > 0 ? (
         <>
           <div className="section classrooms-row">
-            <p className="section-title">Classrooms</p>
+            <p className="section-title"></p>
             <div className="floor-map">
               {floor2Rooms
                 .filter((room) => room.startsWith("UH"))
@@ -120,7 +119,7 @@ function Floor2() {
           </div>
 
           <div className="section another-floor-row">
-            <p className="section-title">Another Floor</p>
+            <p className="section-title"></p>
             <div className="floor-map">
               {["Stairs", "Elevator"].map((room) => (
                 <div key={room} onClick={() => handleNavigation(room)} className="room">
@@ -131,7 +130,7 @@ function Floor2() {
           </div>
 
           <div className="section restrooms-row">
-            <p className="section-title">Restrooms</p>
+            <p className="section-title"></p>
             <div className="floor-map">
               <div onClick={() => handleNavigation("Restrooms")} className="room restrooms-room">
                 Restrooms
@@ -142,7 +141,7 @@ function Floor2() {
       ) : (
         <p>Loading room coordinates...</p>
       )}
-      <button className="home-button" onClick={() => navigate("/")}><FontAwesomeIcon icon={faHome}/></button>
+      <button className="home-button" onClick={() => navigate("/")}><Logo className='logo' /></button>
     </div>
   );
 }
