@@ -95,11 +95,11 @@ function Start() {
           </button>
         </div>
 
-        <div className="option">
+        {/* <div className="option">
             <button className="choice-button" onClick={speaker}>
                 Speaker
             </button>
-        </div>
+        </div> */}
       </div>
 
           
