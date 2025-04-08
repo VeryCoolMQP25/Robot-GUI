@@ -17,7 +17,7 @@ function ExploreUnity() {
       > <Logo className='logo' /></button>
 
       <h1>Explore Unity Hall</h1>
-      <p>Select a floor:</p>
+      {/* <p>Select a floor:</p> */}
       <div className="floor-selection">
         <button className="floor-choice-button" onClick={() => navigate("/floor1")}>Floor 1</button>
         <button className="floor-choice-button" onClick={() => navigate("/floor2")}>Floor 2</button>
