@@ -5,6 +5,7 @@ import ROSLIB from "roslib";
 import "./App.css";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faHome } from '@fortawesome/free-solid-svg-icons'
+import {ReactComponent as Logo} from './house-solid.svg';
 
 function Floor1() {
   const navigate = useNavigate();
@@ -140,7 +141,7 @@ function Floor1() {
       ) : (
         <p>Loading room coordinates...</p>
       )}
-      <button className="home-button" onClick={() => navigate("/")}><FontAwesomeIcon icon={faHome}/></button>
+      <button className="home-button" onClick={() => navigate("/")}>   <Logo className='logo' /> Home </button>
 
     </div>
   );
