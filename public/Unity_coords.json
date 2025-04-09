@@ -21,8 +21,8 @@
     "floor_3": {
       "Elevator": { "x": 19.3, "y": 10.5, "z": 0.0, "orientationZ": 0.2, "orientationW": 0.98 },
       "Stairs": { "x": 47.9, "y": 10.8, "z": 0.0, "orientationZ": 0.2, "orientationW": 0.98 },
-      "Restrooms": { "x": 17.4, "y": 18.5, "z": 0.0, "orientationZ": 0.00487, "orientationW": 0.99999 },
-      "UH300": { "x": 48.3, "y": 10.8, "z": 0.0, "orientationZ": 0.00487, "orientationW": 0.99999 },
+      "Restrooms": { "x": 15.6, "y": 18.8, "z": 0.0, "orientationZ": 0.00487, "orientationW": 0.99999 },
+      "UH300": { "x": 37.2, "y": 12.2, "z": 0.0, "orientationZ": 0.00487, "orientationW": 0.99999 },
       "UH341": { "x": 39.6, "y": 9.5, "z": 0.0, "orientationZ": 0.1, "orientationW": 0.99 },
       "UH320": { "x": 8.28, "y": 10.4, "z": 0.0, "orientationZ": -0.1, "orientationW": 0.99 },
       "Study_Booths": { "x": 25.9, "y": 6.97, "z": 0.0, "orientationZ": 0.1, "orientationW": 0.99 },
