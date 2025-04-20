@@ -96,7 +96,7 @@ function Start() {
 
         <div className="option">
             <button className="choice-button" onClick={speaker}>
-                Speaker
+                Talk to me
             </button>
         </div>
       </div>
