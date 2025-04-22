@@ -114,7 +114,7 @@ function Floor2() {
           <div className="section study-areas-row">
             <p className="section-title"></p>
             <div className="floor-map">
-              {["Tech_Suites", "Study_Lounge"].map((room) => (
+              {["Study_Lounge"].map((room) => (
                 <div key={room} onClick={() => handleNavigation(room)} className="room">
                   {room.replace("_", " ")}
                 </div>
